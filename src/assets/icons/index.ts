@@ -18,6 +18,7 @@ export { default as EducationIcon } from "./education.svg";
 
 // UI Icons
 export { default as SparkleIcon } from "./sparkle.svg";
+export { default as SparkleIconBadge } from "./sparkle-badge.svg";
 
 // Social Media Icons
 export { default as LinkedInIcon } from "./social-linkedin.svg";
