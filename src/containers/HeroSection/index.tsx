@@ -5,10 +5,35 @@ import Image from "next/image";
 export function HeroSection() {
   return (
     <section className="relative py-20 md:py-32 lg:py-40 overflow-hidden">
+      <div className="bg-background-section-hero absolute opacity-50 h-full w-full" />
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Right: 3D Asset */}
+          <div className="relative hidden lg:block">
+            {/* Decorative ellipses recreated with Tailwind utilities */}
+            <div
+              className="pointer-events-none absolute -top-20 -right-20 h-72 w-72 rounded-full bg-primary-base/20 blur-[120px]"
+              aria-hidden="true"
+            />
+            <div
+              className="pointer-events-none absolute -bottom-16 -left-20 h-64 w-64 rounded-full bg-secondary-base/20 blur-[100px]"
+              aria-hidden="true"
+            />
+
+            {/* 3D Laptop Asset */}
+            <div className="relative z-10 w-full max-w-[519px]">
+              <Image
+                src="/assets/bg-holder.png"
+                alt="Two Wings Dashboard Development"
+                width={519}
+                height={569}
+                priority
+                className="h-auto w-full object-contain"
+              />
+            </div>
+          </div>
           {/* Left: Text Content */}
-          <div className="text-center lg:text-left max-w-[584px] mx-auto lg:mx-0">
+          <div className="text-center lg:text-left max-w-[584px] w-full justify-self-center lg:justify-self-start">
             {/* Badge */}
             <div className="flex justify-center lg:justify-start mb-8">
               <div className="bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] px-4 py-2 rounded-[50px] flex items-center gap-2">
@@ -48,25 +73,6 @@ export function HeroSection() {
               >
                 Oure Work
               </Button>
-            </div>
-          </div>
-
-          {/* Right: 3D Asset */}
-          <div className="relative hidden lg:block">
-            {/* Decorative ellipses as per Figma */}
-            <div className="absolute -top-20 -right-20 w-80 h-80 bg-blur-primary opacity-40" />
-            <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-blur-secondary opacity-30" />
-
-            {/* 3D Laptop Asset */}
-            <div className="relative z-10 w-full max-w-[519px]">
-              <Image
-                src="/assets/hero-3d.png"
-                alt="Two Wings Dashboard Development"
-                width={519}
-                height={569}
-                priority
-                className="w-full h-auto object-contain"
-              />
             </div>
           </div>
         </div>

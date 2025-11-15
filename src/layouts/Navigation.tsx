@@ -16,6 +16,9 @@ const navigationLinks = [
   { label: "Blog", href: ROUTES.BLOG },
 ];
 
+const NAV_GRADIENT =
+  "bg-[linear-gradient(120deg,#040404_0%,#070d0f_55%,#0b1012_100%)]";
+
 export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -33,14 +36,21 @@ export function Navigation() {
     <nav
       className={cn(
         "sticky top-0 z-50 transition-all duration-300",
-        "bg-background-DEFAULT border-b border-border-DEFAULT",
-        isScrolled && "shadow-lg backdrop-blur-sm bg-background-DEFAULT/95"
+        "bg-background-DEFAULT/80 backdrop-blur-sm",
+        isScrolled && "border-b border-border-DEFAULT"
       )}
       role="navigation"
       aria-label="Main navigation"
     >
-      <Container>
-        <div className="flex items-center justify-between h-[73px]">
+      <Container className="py-4">
+        <div
+          className={cn(
+            "flex items-center justify-between",
+            "rounded-[32px] border border-[#06191d] px-4 sm:px-6 lg:px-10",
+            "h-[73px] shadow-[0_20px_60px_rgba(0,0,0,0.45)]",
+            NAV_GRADIENT
+          )}
+        >
           {/* Logo */}
           <div className="shrink-0">
             <Logo />
@@ -61,7 +71,11 @@ export function Navigation() {
 
           {/* Desktop CTA */}
           <div className="hidden lg:block">
-            <Button variant="primary" size="md">
+            <Button
+              variant="primary"
+              size="md"
+              className="rounded-[32px] px-8 text-[16px]"
+            >
               Get a Free Quote
             </Button>
           </div>

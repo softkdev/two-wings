@@ -111,64 +111,62 @@
    Base Styles
    ======================================== */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-html {
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-body {
-  background: var(--background);
-  color: var(--text-body);
-  font-family: var(--font-sans);
-  font-size: var(--font-size-body);
-  line-height: var(--line-height-body);
-  min-height: 100vh;
-}
+  body {
+    background: var(--background);
+    color: var(--text-body);
+    font-family: var(--font-sans);
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-body);
+    min-height: 100vh;
+  }
 
-/* ========================================
-   Typography Utilities
-   ======================================== */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--text-title);
+    font-weight: 700;
+  }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: var(--text-title);
-  font-weight: 700;
-}
+  h1 {
+    font-size: var(--font-size-h1);
+    line-height: var(--line-height-h1);
+  }
 
-h1 {
-  font-size: var(--font-size-h1);
-  line-height: var(--line-height-h1);
-}
+  h2 {
+    font-size: var(--font-size-h2);
+    line-height: var(--line-height-h2);
+  }
 
-h2 {
-  font-size: var(--font-size-h2);
-  line-height: var(--line-height-h2);
-}
+  h3 {
+    font-size: var(--font-size-h3);
+    line-height: var(--line-height-h3);
+  }
 
-h3 {
-  font-size: var(--font-size-h3);
-  line-height: var(--line-height-h3);
-}
+  h4 {
+    font-size: var(--font-size-h4);
+    line-height: var(--line-height-h4);
+  }
 
-h4 {
-  font-size: var(--font-size-h4);
-  line-height: var(--line-height-h4);
-}
-
-h5 {
-  font-size: var(--font-size-h5);
-  line-height: var(--line-height-h5);
+  h5 {
+    font-size: var(--font-size-h5);
+    line-height: var(--line-height-h5);
+  }
 }
 
 /* ========================================
@@ -218,4 +216,9 @@ h5 {
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+.bg-background-section-hero {
+  background-image: url("/bg-pattern.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
