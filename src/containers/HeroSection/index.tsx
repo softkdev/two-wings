@@ -1,5 +1,6 @@
 import { Button, Badge, Container } from "@/components/ui";
 import { SparkleIcon } from "@/assets/icons";
+import Image from "next/image";
 
 export function HeroSection() {
   return (
@@ -50,11 +51,13 @@ export function HeroSection() {
 
             {/* 3D Asset from Figma */}
             <div className="relative z-10 aspect-square max-w-md mx-auto lg:max-w-none">
-              <div className="w-full h-full flex items-center justify-center">
-                <img
+              <div className="relative w-full h-full">
+                <Image
                   src="/assets/hero-3d.png"
                   alt="Two Wings - Dashboard Development Illustration"
-                  className="w-full h-full object-contain drop-shadow-2xl"
+                  fill
+                  className="object-contain drop-shadow-2xl"
+                  priority
                 />
               </div>
             </div>
