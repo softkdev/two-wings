@@ -1,0 +1,166 @@
+import Link from "next/link";
+import { Logo, Container } from "@/components/ui";
+import { ROUTES, CONTACT_INFO, COMPANY_INFO } from "@/lib";
+import {
+  LinkedInIcon,
+  InstagramIcon,
+  TwitterIcon,
+  EmailIcon,
+  WhatsAppIcon,
+  LocationIcon,
+} from "@/assets/icons";
+
+const quickLinks = [
+  { label: "Home", href: ROUTES.HOME },
+  { label: "Services", href: ROUTES.SERVICES },
+  { label: "Projects", href: ROUTES.PROJECTS },
+  { label: "About Us", href: ROUTES.ABOUT },
+  { label: "Blog", href: ROUTES.BLOG },
+];
+
+const services = [
+  { label: "UX/UI Design", href: `${ROUTES.SERVICES}#ux-ui` },
+  { label: "E-Commerce Solutions", href: `${ROUTES.SERVICES}#ecommerce` },
+  { label: "Mobile Applications", href: `${ROUTES.SERVICES}#mobile` },
+  { label: "Custom Dashboards", href: `${ROUTES.SERVICES}#dashboards` },
+  { label: "See All Services", href: ROUTES.SERVICES },
+];
+
+export function Footer() {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer
+      className="bg-background-DEFAULT border-t border-border-DEFAULT"
+      role="contentinfo"
+    >
+      <Container className="py-12 md:py-16">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          {/* Column 1: Logo & Description */}
+          <div className="flex flex-col gap-4">
+            <Logo />
+            <p className="text-body text-text-body-2 font-sans leading-relaxed">
+              Professional web solutions at smart prices. Custom code, no-code,
+              and low-code development.
+            </p>
+
+            {/* Social Links */}
+            <div className="flex gap-3">
+              <a
+                href="#"
+                className="w-9 h-9 rounded-full bg-[rgba(212,239,243,0.05)] flex items-center justify-center text-text-body-2 hover:text-text-title hover:bg-[rgba(212,239,243,0.1)] transition-colors"
+                aria-label="LinkedIn"
+              >
+                <LinkedInIcon className="w-[18px] h-[18px]" />
+              </a>
+              <a
+                href="#"
+                className="w-9 h-9 rounded-full bg-[rgba(212,239,243,0.05)] flex items-center justify-center text-text-body-2 hover:text-text-title hover:bg-[rgba(212,239,243,0.1)] transition-colors"
+                aria-label="Instagram"
+              >
+                <InstagramIcon className="w-[18px] h-[18px]" />
+              </a>
+              <a
+                href="#"
+                className="w-9 h-9 rounded-full bg-[rgba(212,239,243,0.05)] flex items-center justify-center text-text-body-2 hover:text-text-title hover:bg-[rgba(212,239,243,0.1)] transition-colors"
+                aria-label="Twitter"
+              >
+                <TwitterIcon className="w-[18px] h-[18px]" />
+              </a>
+            </div>
+          </div>
+
+          {/* Column 2: Quick Links */}
+          <div>
+            <h3 className="text-body-para text-primary-base font-sans mb-6">
+              Quick Links
+            </h3>
+            <ul className="flex flex-col gap-4">
+              {quickLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-body text-text-body-2 font-sans hover:text-text-title transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 3: Our Services */}
+          <div>
+            <h3 className="text-body-para text-primary-base font-sans mb-6">
+              Our Services
+            </h3>
+            <ul className="flex flex-col gap-4">
+              {services.map((service) => (
+                <li key={service.href}>
+                  <Link
+                    href={service.href}
+                    className="text-body text-text-body-2 font-sans hover:text-text-title transition-colors"
+                  >
+                    {service.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 4: Contact Us */}
+          <div>
+            <h3 className="text-body-para text-primary-base font-sans mb-6">
+              Contact Us
+            </h3>
+            <ul className="flex flex-col gap-4">
+              {/* Email */}
+              <li className="flex gap-3">
+                <EmailIcon className="w-[18px] h-[18px] text-text-body-2 shrink-0 mt-1" />
+                <a
+                  href={`mailto:${CONTACT_INFO.EMAIL}`}
+                  className="text-body text-text-body-2 font-sans hover:text-text-title transition-colors"
+                >
+                  {CONTACT_INFO.EMAIL}
+                </a>
+              </li>
+
+              {/* WhatsApp */}
+              <li className="flex gap-3">
+                <WhatsAppIcon className="w-[18px] h-[18px] text-text-body-2 shrink-0 mt-1" />
+                <a
+                  href={`https://wa.me/${CONTACT_INFO.PHONE.replace(
+                    /\D/g,
+                    ""
+                  )}`}
+                  className="text-body text-text-body-2 font-sans hover:text-text-title transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {CONTACT_INFO.PHONE}
+                </a>
+              </li>
+
+              {/* Location */}
+              <li className="flex gap-3">
+                <LocationIcon className="w-[18px] h-[18px] text-text-body-2 shrink-0 mt-1" />
+                <span className="text-body text-text-body-2 font-sans">
+                  {CONTACT_INFO.LOCATION}
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Copyright */}
+        <div className="pt-8 border-t border-border-DEFAULT">
+          <p className="text-body text-text-secondary font-sans text-center">
+            © {currentYear} {COMPANY_INFO.NAME}. All rights reserved. Built with
+            excellence.
+          </p>
+        </div>
+      </Container>
+    </footer>
+  );
+}

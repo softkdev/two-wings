@@ -1,0 +1,221 @@
+@import "tailwindcss";
+
+/* ========================================
+   CSS Variables (Root)
+   ======================================== */
+
+:root {
+  /* Background Colors */
+  --background: #0a0c0f;
+  --background-section: #16181b;
+
+  /* Text Colors */
+  --text-title: #f5f5f5;
+  --text-body: #c4c4c4;
+  --text-body-2: #99a1af;
+  --text-secondary: #6a7282;
+
+  /* Brand Colors */
+  --primary-base: #29adc5;
+  --primary-50: #4dbbcf;
+  --secondary-base: #ffc83a;
+
+  /* Border */
+  --border-default: rgba(255, 255, 255, 0.1);
+}
+
+/* ========================================
+   Tailwind Theme Configuration
+   ======================================== */
+
+@theme inline {
+  /* Colors */
+  --color-primary-base: var(--primary-base);
+  --color-primary-50: var(--primary-50);
+
+  --color-secondary-base: var(--secondary-base);
+
+  --color-background-DEFAULT: var(--background);
+  --color-background-section: var(--background-section);
+
+  --color-text-title: var(--text-title);
+  --color-text-body: var(--text-body);
+  --color-text-body-2: var(--text-body-2);
+  --color-text-secondary: var(--text-secondary);
+
+  --color-border-DEFAULT: var(--border-default);
+
+  /* Font Families */
+  --font-display: "Playfair Display", serif;
+  --font-sans: "Lato", sans-serif;
+  --font-heading: "Manrope", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  /* Font Sizes - Hero */
+  --font-size-hero: 64px;
+  --line-height-hero: normal;
+
+  /* Font Sizes - Headings */
+  --font-size-h1: 48px;
+  --line-height-h1: 58px;
+
+  --font-size-h2: 40px;
+  --line-height-h2: 50px;
+
+  --font-size-h3: 28px;
+  --line-height-h3: 36px;
+
+  --font-size-h4: 24px;
+  --line-height-h4: 30px;
+
+  --font-size-h5: 20px;
+  --line-height-h5: 100%;
+
+  /* Font Sizes - Body */
+  --font-size-body-lg: 24px;
+  --line-height-body-lg: 30px;
+
+  --font-size-body: 16px;
+  --line-height-body: 24px;
+
+  --font-size-body-para: 18px;
+  --line-height-body-para: 28px;
+
+  /* Font Sizes - Special */
+  --font-size-stat: 60px;
+  --line-height-stat: normal;
+
+  --font-size-button: 16px;
+  --line-height-button: 24px;
+
+  /* Spacing Scale */
+  --spacing-section-y: 120px;
+  --spacing-section-y-sm: 80px;
+  --spacing-container-x: 135px;
+  --spacing-container-x-md: 80px;
+  --spacing-container-x-sm: 24px;
+
+  /* Border Radius */
+  --radius-button: 32px;
+  --radius-card: 16px;
+  --radius-badge: 50px;
+  --radius-icon: 8px;
+
+  /* Box Shadows */
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.1);
+  --shadow-glow-primary: 0 0 40px rgba(41, 173, 197, 0.2);
+  --shadow-glow-secondary: 0 0 40px rgba(255, 200, 58, 0.2);
+}
+
+/* ========================================
+   Base Styles
+   ======================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--background);
+  color: var(--text-body);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  min-height: 100vh;
+}
+
+/* ========================================
+   Typography Utilities
+   ======================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-title);
+  font-weight: 700;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-h1);
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h2);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-h3);
+}
+
+h4 {
+  font-size: var(--font-size-h4);
+  line-height: var(--line-height-h4);
+}
+
+h5 {
+  font-size: var(--font-size-h5);
+  line-height: var(--line-height-h5);
+}
+
+/* ========================================
+   Custom Utilities
+   ======================================== */
+
+.text-gradient-primary {
+  background: linear-gradient(
+    135deg,
+    var(--primary-base) 0%,
+    var(--primary-50) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-secondary {
+  background: linear-gradient(135deg, var(--secondary-base) 0%, #ffd76f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-blur-primary {
+  background: radial-gradient(
+    circle,
+    rgba(41, 173, 197, 0.15) 0%,
+    transparent 70%
+  );
+  filter: blur(80px);
+}
+
+.bg-blur-secondary {
+  background: radial-gradient(
+    circle,
+    rgba(255, 200, 58, 0.15) 0%,
+    transparent 70%
+  );
+  filter: blur(80px);
+}
+
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
