@@ -46,10 +46,10 @@ export function ServicesSection() {
         <div className="max-w-[1104px] mx-auto">
           {/* Section Header */}
           <div className="text-center mb-10 space-y-4">
-            <h2 className="text-[48px] leading-[58px] text-text-title font-sans font-bold">
+            <h2 className="text-[32px] md:text-[48px] leading-[38px] md:leading-[58px] text-text-title font-sans font-bold">
               What We Can Build for You
             </h2>
-            <p className="text-[24px] leading-[30px] text-text-body font-sans">
+            <p className="text-lg md:text-[24px] leading-[26px] md:leading-[30px] text-text-body font-sans">
               From simple landing pages to complex enterprise systems, we have
               the expertise to bring your vision to life.
             </p>

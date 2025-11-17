@@ -27,10 +27,10 @@ export function ReadyToLaunchSection() {
             />
           </div>
           <div className="relative">
-            <h2 className="mt-4 text-5xl text-text-title font-sans font-bold">
+            <h2 className="mt-4 text-[32px] md:text-5xl leading-[38px] md:leading-[58px] text-text-title font-sans font-bold">
               Ready to launch your project?
             </h2>
-            <p className="mt-4 text-2xl leading-[30px] max-w-md text-text-body">
+            <p className="mt-4 text-lg md:text-2xl leading-[26px] md:leading-[30px] max-w-md text-text-body">
               High-quality design. Real results. Fair pricing. Let’s make your
               vision take flight.
             </p>

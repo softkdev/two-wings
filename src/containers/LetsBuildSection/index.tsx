@@ -146,15 +146,15 @@ export function LetsBuildSection() {
   return (
     <section className="py-20 md:py-32">
       <Container>
-        <h2 className="mt-4 text-center text-[48px] leading-[58px] text-text-title font-sans font-bold">
+        <h2 className="mt-4 text-center text-[32px] md:text-[48px] leading-[38px] md:leading-[58px] text-text-title font-sans font-bold">
           Let&apos;s Build Something Amazing Together
         </h2>
         <div className="mx-auto mb-10 max-w-2xl text-center">
-          <p className="mt-2 text-2xl leading-[30px] text-text-body">
+          <p className="mt-2 text-lg md:text-2xl leading-[26px] md:leading-[30px] text-text-body">
             Tell us about your project and we&apos;ll get back to you within 24
             hours with a detailed proposal.
           </p>
-          <p className="text-xl mt-2 leading-[30px] text-text-body">
+          <p className="text-base md:text-xl mt-2 leading-container-x-sm md:leading-[30px] text-text-body">
             You can reach us anytime via{" "}
             <a
               href="mailto:2wings.companies@gmail.com"
@@ -165,7 +165,7 @@ export function LetsBuildSection() {
             .
           </p>
         </div>
-        <div className="rounded-button border border-white/10 bg-[#16181b] p-12 shadow-[0px_60px_140px_rgba(0,0,0,0.55)]">
+        <div className="rounded-button border border-white/10 bg-[#16181b] p-6 md:p-12 shadow-[0px_60px_140px_rgba(0,0,0,0.55)]">
           <form className="flex flex-col gap-8">
             {/* Name, Email, Phone, Company */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -227,7 +227,7 @@ export function LetsBuildSection() {
                 What services are you interested in?
               </span>
               <div className="flex flex-col gap-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   {serviceGroups.map((group) => (
                     <div key={group.title} className="flex flex-col gap-3">
                       <p className="text-[16px] leading-container-x-sm text-primary-base">

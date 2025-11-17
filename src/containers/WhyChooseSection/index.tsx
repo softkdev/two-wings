@@ -83,10 +83,10 @@ export function WhyChooseSection() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,#0e1d2b_0%,#050609_60%)] opacity-20" />
       <Container className="relative z-10">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="mt-4 text-[48px] leading-[58px] text-text-title font-sans font-bold">
-            Why Choose Us?
+          <h2 className="mt-4 text-[32px] md:text-[48px] leading-[38px] md:leading-[58px] text-text-title font-sans font-bold">
+            Why Choose Two Wings?
           </h2>
-          <p className="mt-4 text-2xl text-text-body font-sans">
+          <p className="mt-4 text-lg md:text-2xl leading-[26px] md:leading-[30px] text-text-body font-sans">
             Professional quality at smart prices. We deliver exceptional results
             that fit your budget.
           </p>

@@ -52,10 +52,10 @@ export function ProjectsSection() {
         <div className="max-w-[1104px] mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16 space-y-4">
-            <h2 className="text-[48px] leading-[58px] font-sans font-bold text-text-title">
+            <h2 className="text-[32px] md:text-[48px] leading-[38px] md:leading-[58px] font-sans font-bold text-text-title">
               Recent Projects
             </h2>
-            <p className="text-[24px] leading-[30px] text-text-body font-sans">
+            <p className="text-lg md:text-[24px] leading-[26px] md:leading-[30px] text-text-body font-sans">
               See how we&apos;ve helped businesses achieve their goals with
               beautiful, functional solutions.
             </p>

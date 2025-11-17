@@ -56,10 +56,10 @@ export function FAQSection() {
         <div className="mx-auto max-w-4xl">
           {/* Header */}
           <div className="mb-12 text-center">
-            <h2 className="text-[48px] leading-[100%] text-text-title font-sans font-bold">
+            <h2 className="text-[32px] md:text-[48px] leading-[38px] md:leading-[100%] text-text-title font-sans font-bold">
               Frequently Asked Questions
             </h2>
-            <p className="mt-4 text-[24px] leading-[30px] text-text-body font-sans font-medium">
+            <p className="mt-4 text-lg md:text-[24px] leading-[26px] md:leading-[30px] text-text-body font-sans font-medium">
               Got questions? We&apos;ve got answers. Find everything you need to
               know about working with Two Wings.
             </p>
@@ -73,10 +73,10 @@ export function FAQSection() {
                 <div
                   key={faq.question}
                   className={cn(
-                    "rounded-[10px] bg-[#16181b] p-6 transition-all",
+                    "rounded-[10px] flex bg-[#16181b] p-4 md:p-6 transition-all",
                     isOpen
-                      ? "flex flex-col gap-4"
-                      : "h-[72px] flex items-center"
+                      ? " flex-col gap-4"
+                      : "h-[78px] md:h-[72px] items-center"
                   )}
                 >
                   <button
@@ -117,7 +117,7 @@ export function FAQSection() {
 
           {/* CTA */}
           <div className="mt-12 flex flex-col items-center gap-4 text-center">
-            <p className="text-[24px] leading-[30px] text-text-body font-sans font-medium">
+            <p className="text-lg md:text-[24px] leading-[26px] md:leading-[30px] text-text-body font-sans font-medium">
               Still have questions? We&apos;re here to help!
             </p>
             <button

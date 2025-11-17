@@ -26,10 +26,10 @@ export function TestimonialsSection() {
     <section className="py-20 md:py-32">
       <Container>
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="mt-4 text-[48px] leading-[58px] text-text-title font-sans font-bold">
+          <h2 className="mt-4 text-[32px] md:text-[48px] leading-[38px] md:leading-[58px] text-text-title font-sans font-bold">
             What Our Clients Say
           </h2>
-          <p className="mt-4 text-2xl text-text-body font-sans">
+          <p className="mt-4 text-lg md:text-2xl leading-[26px] md:leading-[30px] text-text-body font-sans">
             Real results, real impact. Here’s what partners say about building
             with Two Wings.
           </p>

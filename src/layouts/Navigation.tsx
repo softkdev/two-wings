@@ -36,13 +36,13 @@ export function Navigation() {
     <nav
       className={cn(
         "sticky top-0 z-50 transition-all duration-300",
-        "bg-background-DEFAULT/80 backdrop-blur-sm",
+        "md:bg-background-DEFAULT/80 backdrop-blur-sm",
         isScrolled && "border-b border-border-DEFAULT"
       )}
       role="navigation"
       aria-label="Main navigation"
     >
-      <Container className="py-4">
+      <Container className="py-2 md:py-4">
         <div
           className={cn(
             "flex items-center justify-between",
@@ -74,7 +74,7 @@ export function Navigation() {
             <Button
               variant="primary"
               size="md"
-              className="rounded-[32px] px-8 text-[16px]"
+              className="rounded-button px-8 text-[16px]"
             >
               Get a Free Quote
             </Button>
@@ -84,7 +84,7 @@ export function Navigation() {
           <button
             type="button"
             onClick={toggleMobileMenu}
-            className="lg:hidden p-2 text-text-body hover:text-text-title transition-colors"
+            className="lg:hidden px-4 py-2 text-text-body hover:text-text-title transition-colors font-sans text-[16px] leading-container-x-sm"
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMobileMenuOpen}
           >
@@ -123,13 +123,13 @@ export function Navigation() {
         {/* Mobile Menu */}
         <div
           className={cn(
-            "lg:hidden overflow-hidden transition-all duration-300 ease-in-out",
+            "lg:hidden overflow-hidden transition-all duration-300 ease-in-out mt-2",
             isMobileMenuOpen
-              ? "max-h-[400px] opacity-100 pb-6"
+              ? "max-h-[500px] opacity-100 pb-6"
               : "max-h-0 opacity-0"
           )}
         >
-          <div className="flex flex-col gap-6 pt-6 border-t border-border-DEFAULT">
+          <div className="flex flex-col gap-6 pt-6 border-t border-white/10 rounded-card bg-[#0b1015]/50 p-6">
             {/* Mobile Links */}
             {navigationLinks.map((link) => (
               <NavLink
@@ -137,14 +137,14 @@ export function Navigation() {
                 href={link.href}
                 isActive={pathname === link.href}
                 onClick={closeMobileMenu}
-                className="text-[20px]"
+                className="text-[18px] font-sans"
               >
                 {link.label}
               </NavLink>
             ))}
 
             {/* Mobile CTA */}
-            <Button variant="primary" size="md" className="w-full">
+            <Button variant="primary" size="md" className="w-full mt-2">
               Get a Free Quote
             </Button>
           </div>
