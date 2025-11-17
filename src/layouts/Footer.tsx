@@ -34,19 +34,19 @@ export function Footer() {
       className="bg-background-DEFAULT border-t border-border-DEFAULT"
       role="contentinfo"
     >
-      <Container className="py-12 md:py-16">
+      <Container className="py-8 md:py-12 lg:py-16">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 lg:gap-12 mb-8 md:mb-10 lg:mb-12">
           {/* Column 1: Logo & Description */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3 md:gap-4">
             <Logo />
-            <p className="text-body text-text-body-2 font-sans leading-relaxed">
+            <p className="text-sm md:text-base text-text-body-2 font-sans leading-relaxed">
               Professional web solutions at smart prices. Custom code, no-code,
               and low-code development.
             </p>
 
             {/* Social Links */}
-            <div className="flex gap-3">
+            <div className="flex gap-3 mt-2">
               <a
                 href="#"
                 className="w-9 h-9 rounded-full bg-[rgba(212,239,243,0.05)] flex items-center justify-center text-text-body-2 hover:text-text-title hover:bg-[rgba(212,239,243,0.1)] transition-colors"
@@ -73,15 +73,15 @@ export function Footer() {
 
           {/* Column 2: Quick Links */}
           <div>
-            <h3 className="text-body-para text-primary-base font-sans mb-6">
+            <h3 className="text-base md:text-lg text-primary-base font-sans mb-4 md:mb-6">
               Quick Links
             </h3>
-            <ul className="flex flex-col gap-4">
+            <ul className="flex flex-col gap-3 md:gap-4">
               {quickLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-body text-text-body-2 font-sans hover:text-text-title transition-colors"
+                    className="text-sm md:text-base text-text-body-2 font-sans hover:text-text-title transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -92,15 +92,15 @@ export function Footer() {
 
           {/* Column 3: Our Services */}
           <div>
-            <h3 className="text-body-para text-primary-base font-sans mb-6">
+            <h3 className="text-base md:text-lg text-primary-base font-sans mb-4 md:mb-6">
               Our Services
             </h3>
-            <ul className="flex flex-col gap-4">
+            <ul className="flex flex-col gap-3 md:gap-4">
               {services.map((service) => (
                 <li key={service.href}>
                   <Link
                     href={service.href}
-                    className="text-body text-text-body-2 font-sans hover:text-text-title transition-colors"
+                    className="text-sm md:text-base text-text-body-2 font-sans hover:text-text-title transition-colors"
                   >
                     {service.label}
                   </Link>
@@ -111,16 +111,16 @@ export function Footer() {
 
           {/* Column 4: Contact Us */}
           <div>
-            <h3 className="text-body-para text-primary-base font-sans mb-6">
+            <h3 className="text-base md:text-lg text-primary-base font-sans mb-4 md:mb-6">
               Contact Us
             </h3>
-            <ul className="flex flex-col gap-4">
+            <ul className="flex flex-col gap-3 md:gap-4">
               {/* Email */}
               <li className="flex gap-3">
-                <EmailIcon className="w-[18px] h-[18px] text-text-body-2 shrink-0 mt-1" />
+                <EmailIcon className="w-[18px] h-[18px] text-text-body-2 shrink-0 mt-0.5" />
                 <a
                   href={`mailto:${CONTACT_INFO.EMAIL}`}
-                  className="text-body text-text-body-2 font-sans hover:text-text-title transition-colors"
+                  className="text-sm md:text-base text-text-body-2 font-sans hover:text-text-title transition-colors break-all"
                 >
                   {CONTACT_INFO.EMAIL}
                 </a>
@@ -128,13 +128,13 @@ export function Footer() {
 
               {/* WhatsApp */}
               <li className="flex gap-3">
-                <WhatsAppIcon className="w-[18px] h-[18px] text-text-body-2 shrink-0 mt-1" />
+                <WhatsAppIcon className="w-[18px] h-[18px] text-text-body-2 shrink-0 mt-0.5" />
                 <a
                   href={`https://wa.me/${CONTACT_INFO.PHONE.replace(
                     /\D/g,
                     ""
                   )}`}
-                  className="text-body text-text-body-2 font-sans hover:text-text-title transition-colors"
+                  className="text-sm md:text-base text-text-body-2 font-sans hover:text-text-title transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -144,8 +144,8 @@ export function Footer() {
 
               {/* Location */}
               <li className="flex gap-3">
-                <LocationIcon className="w-[18px] h-[18px] text-text-body-2 shrink-0 mt-1" />
-                <span className="text-body text-text-body-2 font-sans">
+                <LocationIcon className="w-[18px] h-[18px] text-text-body-2 shrink-0 mt-0.5" />
+                <span className="text-sm md:text-base text-text-body-2 font-sans">
                   {CONTACT_INFO.LOCATION}
                 </span>
               </li>
@@ -154,8 +154,8 @@ export function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="pt-8 border-t border-border-DEFAULT">
-          <p className="text-body text-text-secondary font-sans text-center">
+        <div className="pt-6 md:pt-8 border-t border-border-DEFAULT">
+          <p className="text-xs md:text-sm text-text-secondary font-sans text-center">
             © {currentYear} {COMPANY_INFO.NAME}. All rights reserved. Built with
             excellence.
           </p>
