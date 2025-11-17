@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button, Container } from "@/components/ui";
+import { Container } from "@/components/ui";
 import { cn } from "@/lib";
 
 const serviceGroups = [
@@ -51,39 +51,78 @@ function Checkbox({
   onChange: () => void;
 }) {
   return (
-    <label className="flex cursor-pointer items-start gap-3 text-left text-[16px] text-text-body">
+    <label className="relative flex cursor-pointer items-center gap-2 text-left">
       <input
         type="checkbox"
         checked={checked}
         onChange={onChange}
-        className="mt-1 h-4 w-4 rounded border-white/30 bg-transparent text-secondary-base focus:ring-secondary-base"
+        className="peer sr-only"
       />
-      <span>{label}</span>
+      <div
+        className={cn(
+          "h-4 w-4 rounded border shrink-0 transition-colors",
+          checked
+            ? "bg-primary-base border-primary-base"
+            : "bg-[#1f1f2e] border-white/20"
+        )}
+      >
+        {checked && (
+          <svg
+            className="h-full w-full"
+            viewBox="0 0 14 14"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11.6609 3.49805L5.24739 9.91153L2.33217 6.99631"
+              stroke="#0A0C0F"
+              strokeWidth="1.16609"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        )}
+      </div>
+      <span className="text-[16px] leading-container-x-sm text-text-body">
+        {label}
+      </span>
     </label>
   );
 }
 
-function BudgetChip({
+function RadioButton({
   label,
-  active,
-  onClick,
+  checked,
+  onChange,
 }: {
   label: string;
-  active: boolean;
-  onClick: () => void;
+  checked: boolean;
+  onChange: () => void;
 }) {
   return (
     <button
       type="button"
-      onClick={onClick}
+      onClick={onChange}
       className={cn(
-        "rounded-[14px] border px-4 py-3 text-left text-[16px] transition-colors",
-        active
-          ? "border-secondary-base bg-secondary-base/10 text-white"
-          : "border-white/15 text-text-body hover:border-secondary-base/40"
+        "flex items-center gap-3 rounded-[10px] border px-3 py-1 h-[49px] transition-colors text-left",
+        checked
+          ? "bg-white/5 border-white/10"
+          : "bg-white/5 border-white/10 hover:border-white/20"
       )}
     >
-      {label}
+      <div
+        className={cn(
+          "h-4 w-4 rounded-full border shrink-0 flex items-center justify-center transition-colors",
+          checked
+            ? "border-white/20 bg-transparent"
+            : "border-white/20 bg-transparent"
+        )}
+      >
+        {checked && <div className="h-2 w-2 rounded-full bg-white/60" />}
+      </div>
+      <span className="text-[16px] leading-container-x-sm text-text-body flex-1">
+        {label}
+      </span>
     </button>
   );
 }
@@ -107,13 +146,16 @@ export function LetsBuildSection() {
   return (
     <section className="py-20 md:py-32">
       <Container>
+        <h2 className="mt-4 text-center text-[48px] leading-[58px] text-text-title font-sans font-bold">
+          Let&apos;s Build Something Amazing Together
+        </h2>
         <div className="mx-auto mb-10 max-w-2xl text-center">
-          <h2 className="mt-4 text-[48px] leading-[58px] text-text-title font-sans font-bold">
-            Let’s Build Something Amazing Together
-          </h2>
-          <p className="mt-4 text-[20px] leading-[30px] text-text-body">
-            Tell us about your project and we’ll respond within 24 hours with a
-            tailored plan. You can reach us anytime via{" "}
+          <p className="mt-2 text-2xl leading-[30px] text-text-body">
+            Tell us about your project and we&apos;ll get back to you within 24
+            hours with a detailed proposal.
+          </p>
+          <p className="text-xl mt-2 leading-[30px] text-text-body">
+            You can reach us anytime via{" "}
             <a
               href="mailto:2wings.companies@gmail.com"
               className="text-secondary-base underline decoration-dotted"
@@ -123,69 +165,88 @@ export function LetsBuildSection() {
             .
           </p>
         </div>
-        <div className="rounded-[32px] border border-white/10 bg-[#16181b]/90 p-6 shadow-[0px_60px_140px_rgba(0,0,0,0.55)] md:p-10">
-          <form className="grid gap-6">
-            <div className="grid gap-6 md:grid-cols-2">
-              <label className="space-y-2">
-                <span className="text-sm text-text-title">Full Name</span>
+        <div className="rounded-button border border-white/10 bg-[#16181b] p-12 shadow-[0px_60px_140px_rgba(0,0,0,0.55)]">
+          <form className="flex flex-col gap-8">
+            {/* Name, Email, Phone, Company */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <label className="flex flex-col gap-2">
+                <div className="flex items-center gap-2 h-6">
+                  <span className="text-[16px] leading-container-x-sm text-text-title">
+                    Full Name
+                  </span>
+                  <span className="text-[18px] leading-[14px] text-primary-base">
+                    *
+                  </span>
+                </div>
                 <input
                   type="text"
                   placeholder="John Doe"
-                  className="w-full rounded-2xl border border-white/15 bg-transparent px-4 py-3 text-white focus:border-secondary-base focus:outline-none"
+                  className="h-12 rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-[16px] leading-container-x-sm text-white placeholder:text-text-secondary focus:border-primary-base focus:outline-none"
                 />
               </label>
-              <label className="space-y-2">
-                <span className="text-sm text-text-title">Email Address</span>
+              <label className="flex flex-col gap-2">
+                <div className="flex items-center gap-2 h-6">
+                  <span className="text-[16px] leading-container-x-sm text-text-title">
+                    Email Address
+                  </span>
+                  <span className="text-[18px] leading-[14px] text-primary-base">
+                    *
+                  </span>
+                </div>
                 <input
                   type="email"
-                  placeholder="you@company.com"
-                  className="w-full rounded-2xl border border-white/15 bg-transparent px-4 py-3 text-white focus:border-secondary-base focus:outline-none"
+                  placeholder="john@example.com"
+                  className="h-12 rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-[16px] leading-container-x-sm text-white placeholder:text-text-secondary focus:border-primary-base focus:outline-none"
                 />
               </label>
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-2">
-              <label className="space-y-2">
-                <span className="text-sm text-text-title">Phone Number</span>
+              <label className="flex flex-col gap-2">
+                <span className="text-[16px] leading-container-x-sm text-text-title h-6">
+                  Phone Number
+                </span>
                 <input
                   type="tel"
                   placeholder="+1 (555) 123-4567"
-                  className="w-full rounded-2xl border border-white/15 bg-transparent px-4 py-3 text-white focus:border-secondary-base focus:outline-none"
+                  className="h-12 rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-[16px] leading-container-x-sm text-white placeholder:text-text-secondary focus:border-primary-base focus:outline-none"
                 />
               </label>
-              <label className="space-y-2">
-                <span className="text-sm text-text-title">Company Name</span>
+              <label className="flex flex-col gap-2">
+                <span className="text-[16px] leading-container-x-sm text-text-title h-6">
+                  Company Name
+                </span>
                 <input
                   type="text"
-                  placeholder="Acme Inc."
-                  className="w-full rounded-2xl border border-white/15 bg-transparent px-4 py-3 text-white focus:border-secondary-base focus:outline-none"
+                  placeholder="Your Company"
+                  className="h-12 rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-[16px] leading-container-x-sm text-white placeholder:text-text-secondary focus:border-primary-base focus:outline-none"
                 />
               </label>
             </div>
 
-            <label className="space-y-3">
-              <span className="text-sm text-text-title">
+            {/* Services */}
+            <div className="flex flex-col gap-2">
+              <span className="text-[16px] leading-container-x-sm text-text-title">
                 What services are you interested in?
               </span>
-              <div className="grid gap-6 md:grid-cols-2">
-                {serviceGroups.map((group) => (
-                  <div key={group.title} className="space-y-3">
-                    <p className="text-sm font-semibold uppercase tracking-wide text-primary-base">
-                      {group.title}
-                    </p>
-                    <div className="space-y-3">
-                      {group.options.map((option) => (
-                        <Checkbox
-                          key={option}
-                          label={option}
-                          checked={selectedServices.includes(option)}
-                          onChange={() => toggleService(option)}
-                        />
-                      ))}
+              <div className="flex flex-col gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {serviceGroups.map((group) => (
+                    <div key={group.title} className="flex flex-col gap-3">
+                      <p className="text-[16px] leading-container-x-sm text-primary-base">
+                        {group.title}
+                      </p>
+                      <div className="flex flex-col gap-2">
+                        {group.options.map((option) => (
+                          <Checkbox
+                            key={option}
+                            label={option}
+                            checked={selectedServices.includes(option)}
+                            onChange={() => toggleService(option)}
+                          />
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                ))}
-                <div className="space-y-3 md:col-span-2">
+                  ))}
+                </div>
+                <div className="flex flex-col gap-3 pt-2">
                   <Checkbox
                     label="Other (Please specify)"
                     checked={otherSelected}
@@ -196,50 +257,76 @@ export function LetsBuildSection() {
                     value={otherText}
                     onChange={(e) => setOtherText(e.target.value)}
                     placeholder="Please describe the service you're looking for..."
-                    className={cn(
-                      "w-full rounded-2xl border border-white/15 bg-transparent px-4 py-3 text-white focus:border-secondary-base focus:outline-none",
-                      !otherSelected && "opacity-60"
-                    )}
                     disabled={!otherSelected}
+                    className={cn(
+                      "h-12 rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-[16px] leading-container-x-sm text-white placeholder:text-text-secondary focus:border-primary-base focus:outline-none transition-opacity",
+                      !otherSelected && "opacity-50 cursor-not-allowed"
+                    )}
                   />
                 </div>
               </div>
-            </label>
-
-            <div className="grid gap-6 md:grid-cols-2">
-              <label className="space-y-3">
-                <span className="text-sm text-text-title">
-                  Estimated Budget
-                </span>
-                <div className="grid gap-3 sm:grid-cols-2">
-                  {budgetOptions.map((budget) => (
-                    <BudgetChip
-                      key={budget}
-                      label={budget}
-                      active={selectedBudget === budget}
-                      onClick={() => setSelectedBudget(budget)}
-                    />
-                  ))}
-                </div>
-              </label>
             </div>
 
-            <label className="space-y-3">
-              <span className="text-sm text-text-title">Project Details</span>
-              <textarea
-                rows={5}
-                placeholder="Tell us about your project, timeline, goals, or any specific requirements…"
-                className="w-full rounded-2xl border border-white/15 bg-transparent px-4 py-3 text-white focus:border-secondary-base focus:outline-none"
-              />
-            </label>
+            {/* Budget */}
+            <div className="flex flex-col gap-4">
+              <span className="text-[16px] leading-container-x-sm text-text-title">
+                What is your estimated budget range?
+              </span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {budgetOptions.map((budget) => (
+                  <RadioButton
+                    key={budget}
+                    label={budget}
+                    checked={selectedBudget === budget}
+                    onChange={() => setSelectedBudget(budget)}
+                  />
+                ))}
+              </div>
+            </div>
 
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-sm text-text-body">
-                We’ll respond within 24 hours with a detailed proposal.
+            {/* Project Details */}
+            <div className="flex flex-col gap-2">
+              <span className="text-[16px] leading-container-x-sm text-text-title">
+                Project Details
+              </span>
+              <textarea
+                placeholder="Tell us about your project, timeline, budget, and any specific requirements..."
+                className="h-16 rounded-lg border border-white/10 bg-white/5 px-3 py-3 text-[16px] leading-container-x-sm text-white placeholder:text-text-secondary focus:border-primary-base focus:outline-none resize-none"
+              />
+            </div>
+
+            {/* Footer */}
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+              <p className="text-[20px] leading-[100%] text-text-body font-body font-medium">
+                We&apos;ll respond within 24 hours with a detailed proposal
               </p>
-              <Button type="submit" className="w-full sm:w-auto">
-                Send Message
-              </Button>
+              <button
+                type="submit"
+                className="h-12 px-6 rounded-button bg-secondary-base text-background-DEFAULT text-[16px] leading-container-x-sm font-sans font-bold flex items-center justify-center gap-1 hover:opacity-90 transition-opacity"
+              >
+                <span>Send Message</span>
+                <svg
+                  className="w-6 h-6"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M14.537 21.6851C14.575 21.7798 14.6411 21.8606 14.7263 21.9166C14.8115 21.9727 14.9119 22.0013 15.0139 21.9987C15.1159 21.9961 15.2146 21.9624 15.2969 21.902C15.3791 21.8417 15.4409 21.7576 15.474 21.6611L21.974 2.66108C22.006 2.57247 22.0121 2.47658 21.9916 2.38463C21.9711 2.29268 21.9249 2.20847 21.8582 2.14186C21.7916 2.07524 21.7074 2.02897 21.6155 2.00847C21.5235 1.98797 21.4276 1.99408 21.339 2.02608L2.33903 8.52608C2.24252 8.55917 2.15845 8.621 2.0981 8.70325C2.03774 8.7855 2.004 8.88425 2.00138 8.98624C1.99877 9.08822 2.02742 9.18857 2.08348 9.27381C2.13955 9.35904 2.22034 9.42509 2.31503 9.46308L10.245 12.6431C10.4957 12.7434 10.7235 12.8935 10.9146 13.0843C11.1057 13.2751 11.2562 13.5026 11.357 13.7531L14.537 21.6851Z"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M21.853 2.14648L10.913 13.0855"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
             </div>
           </form>
         </div>

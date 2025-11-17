@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button, Container } from "@/components/ui";
+import { Container } from "@/components/ui";
 import { cn } from "@/lib";
 
 const faqs = [
@@ -31,6 +31,11 @@ const faqs = [
       "Absolutely. We routinely optimize, redesign, or rebuild existing products while keeping your content, data, and integrations intact.",
   },
   {
+    question: "What is your pricing structure?",
+    answer:
+      "Our pricing is project-based and tailored to your specific needs. We provide detailed proposals after understanding your requirements. Contact us for a custom quote.",
+  },
+  {
     question: "Do I need technical knowledge to work with you?",
     answer:
       "Not at all. We guide you through every step, translate technical decisions, and provide documentation plus training post-launch.",
@@ -38,72 +43,90 @@ const faqs = [
   {
     question: "What happens after the project is completed?",
     answer:
-      "We hand over documentation, provide training for your team, and stay available for support packages or future enhancements.",
+      "After launch, we provide training on how to manage your website or application, along with documentation. We offer ongoing support packages and are always available for future updates or expansions. We also provide a warranty period for bug fixes and adjustments.",
   },
 ];
 
 export function FAQSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(7); // Last item open by default
 
   return (
     <section className="py-20 md:py-32">
       <Container>
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-secondary-base">
-            FAQ
-          </p>
-          <h2 className="mt-4 text-[48px] leading-[58px] text-text-title font-sans font-bold">
-            Frequently Asked Questions
-          </h2>
-          <p className="mt-4 text-[20px] leading-[30px] text-text-body">
-            Got questions? We’ve got answers. Here are the things people ask us
-            most.
-          </p>
-        </div>
+        <div className="mx-auto max-w-4xl">
+          {/* Header */}
+          <div className="mb-12 text-center">
+            <h2 className="text-[48px] leading-[100%] text-text-title font-sans font-bold">
+              Frequently Asked Questions
+            </h2>
+            <p className="mt-4 text-[24px] leading-[30px] text-text-body font-sans font-medium">
+              Got questions? We&apos;ve got answers. Find everything you need to
+              know about working with Two Wings.
+            </p>
+          </div>
 
-        <div className="mx-auto mt-12 max-w-4xl divide-y divide-white/10 rounded-[24px] border border-white/10 bg-[#0b1015]/80">
-          {faqs.map((faq, index) => {
-            const isOpen = openIndex === index;
-            return (
-              <div key={faq.question}>
-                <button
-                  type="button"
-                  onClick={() => setOpenIndex(isOpen ? null : index)}
-                  className="flex w-full items-center justify-between gap-4 px-6 py-6 text-left"
-                >
-                  <span className="text-[18px] font-semibold text-white">
-                    {faq.question}
-                  </span>
-                  <span
-                    className={cn(
-                      "text-secondary-base transition-transform",
-                      isOpen ? "rotate-45" : "rotate-0"
-                    )}
-                  >
-                    +
-                  </span>
-                </button>
+          {/* FAQ Items */}
+          <div className="flex flex-col gap-4">
+            {faqs.map((faq, index) => {
+              const isOpen = openIndex === index;
+              return (
                 <div
+                  key={faq.question}
                   className={cn(
-                    "grid overflow-hidden px-6 transition-all duration-300",
-                    isOpen ? "grid-rows-[1fr] pb-6" : "grid-rows-[0fr]"
+                    "rounded-[10px] bg-[#16181b] p-6 transition-all",
+                    isOpen
+                      ? "flex flex-col gap-4"
+                      : "h-[72px] flex items-center"
                   )}
                 >
-                  <p className="text-[16px] leading-[26px] text-text-body">
-                    {faq.answer}
-                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setOpenIndex(isOpen ? null : index)}
+                    className="flex w-full items-center justify-between gap-4 text-left"
+                  >
+                    <span className="text-[16px] leading-container-x-sm text-text-title font-sans font-normal">
+                      {faq.question}
+                    </span>
+                    <svg
+                      className={cn(
+                        "h-4 w-4 shrink-0 text-text-title transition-transform",
+                        isOpen && "rotate-180"
+                      )}
+                      fill="none"
+                      viewBox="0 0 16 16"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M4 6L8 10L12 6"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </button>
+                  {isOpen && (
+                    <p className="text-[16px] leading-container-x-sm text-text-body-2 font-sans font-normal">
+                      {faq.answer}
+                    </p>
+                  )}
                 </div>
-                <div className="h-px bg-white/5" />
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
 
-        <div className="mt-10 flex flex-col items-center gap-4 text-center">
-          <p className="text-[18px] text-text-body">
-            Still have questions? We’re here to help!
-          </p>
-          <Button variant="outline">Talk to the team</Button>
+          {/* CTA */}
+          <div className="mt-12 flex flex-col items-center gap-4 text-center">
+            <p className="text-[24px] leading-[30px] text-text-body font-sans font-medium">
+              Still have questions? We&apos;re here to help!
+            </p>
+            <button
+              type="button"
+              className="h-12 px-6 rounded-button bg-secondary-base text-background-DEFAULT text-[16px] leading-container-x-sm font-sans font-bold hover:opacity-90 transition-opacity"
+            >
+              Contact Us
+            </button>
+          </div>
         </div>
       </Container>
     </section>

@@ -12,7 +12,7 @@ const buttonVariants = {
 
 const buttonSizes = {
   sm: "px-4 py-2 text-[14px] leading-[20px]",
-  md: "px-6 py-3 text-button",
+  md: "px-6 py-3 text-button min-w-[174px]",
   lg: "px-8 py-4 text-[18px] leading-[26px]",
 };
 

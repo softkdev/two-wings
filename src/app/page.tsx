@@ -10,7 +10,6 @@ import {
   LetsBuildSection,
   FAQSection,
   ReadyToLaunchSection,
-  CTASection,
 } from "@/containers";
 
 export default function Home() {
@@ -27,7 +26,6 @@ export default function Home() {
       <LetsBuildSection />
       <FAQSection />
       <ReadyToLaunchSection />
-      <CTASection />
     </>
   );
 }
