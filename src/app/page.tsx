@@ -3,6 +3,13 @@ import {
   StatsBar,
   ServicesSection,
   ProjectsSection,
+  WhyChooseSection,
+  WorkingProcessSection,
+  AboutSection,
+  TestimonialsSection,
+  LetsBuildSection,
+  FAQSection,
+  ReadyToLaunchSection,
   CTASection,
 } from "@/containers";
 
@@ -13,6 +20,13 @@ export default function Home() {
       <StatsBar />
       <ServicesSection />
       <ProjectsSection />
+      <WhyChooseSection />
+      <WorkingProcessSection />
+      <AboutSection />
+      <TestimonialsSection />
+      <LetsBuildSection />
+      <FAQSection />
+      <ReadyToLaunchSection />
       <CTASection />
     </>
   );

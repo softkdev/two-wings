@@ -11,6 +11,7 @@ export function IconWrapper({
   size = "md",
   className,
   children,
+  style,
 }: IconWrapperProps) {
   return (
     <div
@@ -21,6 +22,7 @@ export function IconWrapper({
         iconWrapperSizes[size],
         className
       )}
+      style={style}
     >
       {children}
     </div>

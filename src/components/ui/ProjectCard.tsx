@@ -12,40 +12,41 @@ export function ProjectCard({
   return (
     <article
       className={cn(
-        "group",
-        "bg-background-section border border-border-DEFAULT rounded-card",
-        "overflow-hidden",
+        "group flex flex-col",
+        "bg-[#0f1317] border border-white/10 rounded-[24px]",
+        "overflow-hidden shadow-[0px_20px_60px_rgba(0,0,0,0.35)]",
         "transition-all duration-300",
-        "hover:border-primary-base/30 hover:shadow-card",
+        "hover:border-primary-base/40",
         className
       )}
     >
       {/* Image/Mockup Container */}
-      <div className="relative bg-[#0F1113] p-8 overflow-hidden">
-        {/* Decorative blur effects */}
-        <div className="absolute top-0 left-0 w-48 h-48 bg-blur-primary opacity-50" />
-        <div className="absolute bottom-0 right-0 w-48 h-48 bg-blur-secondary opacity-30" />
+      <div className="relative bg-[#050a10] p-2  overflow-hidden">
+        <div className="absolute -top-8 -left-6 h-48 w-48 rounded-full bg-[#29adc5]/20 blur-[100px]" />
+        <div className="absolute -bottom-8 -right-6 h-40 w-40 rounded-full bg-[#ffc83a]/20 blur-[90px]" />
 
-        {/* Image */}
-        <div className="relative z-10 flex items-center justify-center min-h-[200px] md:min-h-[240px]">
-          {image}
+        <div className="relative z-10 rounded-[14px] overflow-hidden flex items-center justify-center min-h-[260px]">
+          <div className="relative w-full h-[260px]">{image}</div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="p-6 md:p-8">
-        {/* Title */}
-        <h3 className="text-h3 text-text-title mb-3 font-heading">{title}</h3>
-
-        {/* Description */}
-        <p className="text-body text-text-body-2 font-sans mb-6 leading-relaxed">
+      <div className="p-4 space-y-4">
+        <h3 className="text-[18px] leading-[28px] font-normal text-[#70c8d8]">
+          {title}
+        </h3>
+        <p className="text-base ellipse-line-2 pb-1 leading-container-x-sm text-text-body font-sans">
           {description}
         </p>
 
-        {/* Technologies */}
-        <div className="flex flex-wrap gap-2 md:gap-3 overflow-x-auto pb-2 -mb-2 scrollbar-hide">
-          {technologies.map((tech, index) => (
-            <Badge key={index} size="sm" color="text">
+        <div className="flex gap-2 scrollbar-hide">
+          {technologies.map((tech) => (
+            <Badge
+              key={`${title}-${tech}`}
+              size="sm"
+              color="primary"
+              className="border-white/15 bg-white/5"
+            >
               {tech}
             </Badge>
           ))}

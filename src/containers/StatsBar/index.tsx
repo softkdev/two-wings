@@ -1,35 +1,46 @@
-import { StatItem, Container } from "@/components/ui";
+import { Fragment } from "react";
+import { StatItem } from "@/components/ui";
 import { STATS } from "@/lib";
 
 export function StatsBar() {
   return (
-    <section className="bg-background-section border-y border-border-DEFAULT py-8 md:py-12">
-      <Container>
-        {/* Mobile: Vertical Stack */}
-        <div className="flex flex-col md:hidden gap-8 items-center">
-          {STATS.map((stat) => (
-            <StatItem
+    <section>
+      <div className="w-full border border-white/10 bg-[#16181b] px-6 py-8 md:px-12 lg:px-16">
+        {/* Mobile */}
+        <div className="flex flex-col gap-10 md:hidden">
+          {STATS.map((stat, index) => (
+            <div
               key={stat.id}
-              value={stat.value}
-              label={stat.label}
-              color={stat.color as "primary" | "secondary"}
-            />
+              className="flex flex-col items-center gap-4 text-center"
+            >
+              <StatItem
+                value={stat.value}
+                label={stat.label}
+                color={stat.color as "primary" | "secondary"}
+              />
+              {index < STATS.length - 1 && (
+                <span className="h-px w-16 bg-white/15 mx-auto" />
+              )}
+            </div>
           ))}
         </div>
 
-        {/* Tablet & Desktop: Horizontal with Dividers */}
-        <div className="hidden md:flex items-center justify-center">
+        {/* Desktop */}
+        <div className="hidden md:flex items-center justify-center gap-12 lg:gap-16">
           {STATS.map((stat, index) => (
-            <StatItem
-              key={stat.id}
-              value={stat.value}
-              label={stat.label}
-              color={stat.color as "primary" | "secondary"}
-              showDivider={index < STATS.length - 1}
-            />
+            <Fragment key={stat.id}>
+              <StatItem
+                value={stat.value}
+                label={stat.label}
+                color={stat.color as "primary" | "secondary"}
+              />
+              {index < STATS.length - 1 && (
+                <span className="hidden md:block h-20 w-px bg-white/20" />
+              )}
+            </Fragment>
           ))}
         </div>
-      </Container>
+      </div>
     </section>
   );
 }

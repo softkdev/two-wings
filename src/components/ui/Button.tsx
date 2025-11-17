@@ -29,7 +29,7 @@ export function Button({
   return (
     <button
       className={cn(
-        "inline-flex items-center justify-center gap-2",
+        "inline-flex items-center cursor-pointer justify-center gap-2",
         "rounded-button font-sans font-bold",
         "transition-all duration-200",
         "disabled:opacity-50 disabled:cursor-not-allowed",

@@ -10,30 +10,21 @@ export function StatItem({
   value,
   label,
   color = "primary",
-  showDivider = false,
   className,
 }: StatItemProps) {
   return (
-    <div className={cn("flex items-center gap-8 md:gap-16", className)}>
-      <div className="flex flex-col items-center gap-2">
-        {/* Value */}
-        <p className={cn("text-stat font-sans text-center", statColors[color])}>
-          {value}
-        </p>
-
-        {/* Label */}
-        <p className="text-body text-text-body text-center font-sans">
-          {label}
-        </p>
-      </div>
-
-      {/* Divider */}
-      {showDivider && (
-        <div
-          className="h-20 w-px bg-[rgba(255,255,255,0.2)] shrink-0"
-          aria-hidden="true"
-        />
-      )}
+    <div className={cn("flex flex-col items-center text-center gap-2", className)}>
+      <p
+        className={cn(
+          "font-sans text-[60px] leading-[60px] font-normal tracking-[-0.02em]",
+          statColors[color]
+        )}
+      >
+        {value}
+      </p>
+      <p className="font-sans text-[16px] leading-[24px] text-text-body">
+        {label}
+      </p>
     </div>
   );
 }

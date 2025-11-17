@@ -1,13 +1,20 @@
-import { Container, Button } from "@/components/ui";
+import { Container, Button, ProjectCard } from "@/components/ui";
 import Image from "next/image";
 
-// Project data with real Figma content
-const projects = [
+type ProjectItem = {
+  id: string;
+  title: string;
+  description: string;
+  technologies: string[];
+  mockupImage: string;
+};
+
+const baseProjects: ProjectItem[] = [
   {
     id: "six-flags",
     title: "Six Flags – Qiddiya City",
     description:
-      "An immersive landing experience for Six Flags Qiddiya City, the first Six Flags...",
+      "An immersive landing experience for Six Flags Qiddiya City, the first Six Flags park in the Middle East.",
     technologies: ["Animation", "Swiper.js", "Svelte", "+3"],
     mockupImage: "/assets/projects/sixflags-mockup.png",
   },
@@ -15,93 +22,92 @@ const projects = [
     id: "my-sport-time",
     title: "My Sport Time",
     description:
-      "A multi-platform sports management ecosystem consisting of two panels and...",
+      "A multi-platform sports management ecosystem consisting of two panels and native mobile apps.",
     technologies: ["TypeScript", "Next.js", "React.js", "+3"],
     mockupImage: "/assets/projects/mysporttime-mockup.png",
   },
+  {
+    id: "jesus-revival",
+    title: "Jesus Revival Church",
+    description:
+      "A faith-centered website designed to share religious events, community news, and streaming content.",
+    technologies: ["React.js", "Next.js", "SEO Optimization", "+3"],
+    mockupImage: "/assets/projects/jesus-revival-mockup.webp",
+  },
+];
+
+// Duplicate set to mirror Figma's two-row grid layout
+const projects: ProjectItem[] = [
+  ...baseProjects,
+  ...baseProjects.map((project) => ({
+    ...project,
+    id: `${project.id}-repeat`,
+  })),
 ];
 
 export function ProjectsSection() {
   return (
-    <section className="py-20 md:py-32 bg-background-section">
+    <section className="py-20 md:py-32">
       <Container>
-        {/* Section Header */}
-        <div className="text-center mb-16 max-w-3xl mx-auto">
-          <h2 className="text-[40px] md:text-h1 text-text-title mb-6 font-heading leading-tight">
-            Recent Projects
-          </h2>
-          <p className="text-body-lg text-text-body-2">
-            From simple landing pages to complex enterprise systems, we deliver
-            excellence at every scale
-          </p>
-        </div>
+        <div className="max-w-[1104px] mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-16 space-y-4">
+            <h2 className="text-[48px] leading-[58px] font-sans font-bold text-text-title">
+              Recent Projects
+            </h2>
+            <p className="text-[24px] leading-[30px] text-text-body font-sans">
+              See how we&apos;ve helped businesses achieve their goals with
+              beautiful, functional solutions.
+            </p>
+          </div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {projects.map((project) => (
-            <article
-              key={project.id}
-              className="bg-background-section border border-border-DEFAULT rounded-card overflow-hidden hover:border-primary-base/30 transition-all"
+          {/* Projects Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-12">
+            {projects.map((project) => (
+              <ProjectCard
+                key={project.id}
+                title={project.title}
+                description={project.description}
+                technologies={project.technologies}
+                image={
+                  <Image
+                    src={project.mockupImage}
+                    alt={project.title}
+                    fill
+                    priority={project.id === "six-flags"}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 352px"
+                    className="object-cover object-top"
+                  />
+                }
+              />
+            ))}
+          </div>
+
+          {/* CTA Button */}
+          <div className="flex justify-end">
+            <Button
+              variant="outline"
+              size="md"
+              className="w-[174px] h-12 rounded-button border-secondary-base text-secondary-base"
+              rightIcon={
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.8}
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M5 12h14m-6-6 6 6-6 6"
+                  />
+                </svg>
+              }
             >
-              {/* Project Mockup */}
-              <div className="relative bg-background-DEFAULT h-[293px] overflow-hidden">
-                <Image
-                  src={project.mockupImage}
-                  alt={project.title}
-                  fill
-                  className="object-contain"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 352px"
-                />
-              </div>
-
-              {/* Project Info */}
-              <div className="p-6">
-                <h3 className="text-body-para text-primary-base font-sans mb-3">
-                  {project.title}
-                </h3>
-                <p className="text-body text-text-body font-sans mb-6 leading-relaxed">
-                  {project.description}
-                </p>
-
-                {/* Tech Badges */}
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech, index) => (
-                    <span
-                      key={index}
-                      className="bg-[rgba(255,255,255,0.1)] border border-[rgba(255,255,255,0.2)] text-primary-base px-3 py-1 rounded-lg text-[12px] font-sans"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        {/* CTA Button */}
-        <div className="flex justify-center">
-          <Button
-            variant="primary"
-            size="lg"
-            rightIcon={
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            }
-          >
-            View All Projects
-          </Button>
+              All Project
+            </Button>
+          </div>
         </div>
       </Container>
     </section>

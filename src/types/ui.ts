@@ -4,7 +4,7 @@
  * Type definitions for UI components.
  */
 
-import type { ReactNode } from "react";
+import type { ReactNode, CSSProperties } from "react";
 
 /**
  * Button variants
@@ -42,6 +42,7 @@ export type ColorVariant = "primary" | "secondary" | "text";
 export interface BaseComponentProps {
   className?: string;
   children?: ReactNode;
+  style?: CSSProperties;
 }
 
 /**
@@ -80,6 +81,7 @@ export interface ServiceCardProps {
   title: string;
   description: string;
   className?: string;
+  iconBackground?: string;
 }
 
 /**
@@ -100,7 +102,6 @@ export interface StatItemProps {
   value: string;
   label: string;
   color?: "primary" | "secondary";
-  showDivider?: boolean;
   className?: string;
 }
 
