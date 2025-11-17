@@ -17,3 +17,4 @@ export { StatItem } from "./StatItem";
 export { ServiceCard } from "./ServiceCard";
 export { ProjectCard } from "./ProjectCard";
 export { ScrollToTop } from "./ScrollToTop";
+export { Modal } from "./Modal";

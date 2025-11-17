@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Container } from "@/components/ui";
 import { cn } from "@/lib";
+import { useModal } from "@/contexts/ModalContext";
 
 const faqs = [
   {
@@ -49,6 +50,7 @@ const faqs = [
 
 export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(7); // Last item open by default
+  const { openContactModal } = useModal();
 
   return (
     <section className="py-20 md:py-32">
@@ -122,6 +124,7 @@ export function FAQSection() {
             </p>
             <button
               type="button"
+              onClick={openContactModal}
               className="h-12 px-6 rounded-button bg-secondary-base text-background-DEFAULT text-[16px] leading-container-x-sm font-sans font-bold hover:opacity-90 transition-opacity"
             >
               Contact Us

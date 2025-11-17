@@ -7,6 +7,7 @@ import { NavLink } from "./NavLink";
 import { ROUTES } from "@/lib";
 import { cn } from "@/lib";
 import { useIsScrolled } from "@/hooks";
+import { useModal } from "@/contexts/ModalContext";
 
 const navigationLinks = [
   { label: "Home", href: ROUTES.HOME },
@@ -23,6 +24,7 @@ export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const isScrolled = useIsScrolled(50);
+  const { openContactModal } = useModal();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -75,6 +77,7 @@ export function Navigation() {
               variant="primary"
               size="md"
               className="rounded-button px-8 text-[16px]"
+              onClick={openContactModal}
             >
               Get a Free Quote
             </Button>
@@ -144,7 +147,15 @@ export function Navigation() {
             ))}
 
             {/* Mobile CTA */}
-            <Button variant="primary" size="md" className="w-full mt-2">
+            <Button
+              variant="primary"
+              size="md"
+              className="w-full mt-2"
+              onClick={() => {
+                openContactModal();
+                closeMobileMenu();
+              }}
+            >
               Get a Free Quote
             </Button>
           </div>

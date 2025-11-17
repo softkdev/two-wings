@@ -1,6 +1,10 @@
+"use client";
+
 import { Button, Container } from "@/components/ui";
+import { useModal } from "@/contexts/ModalContext";
 
 export function CTASection() {
+  const { openContactModal } = useModal();
   return (
     <section className="py-20 md:py-32">
       <Container>
@@ -39,7 +43,7 @@ export function CTASection() {
             >
               Get Started
             </Button>
-            <Button variant="ghost" size="lg">
+            <Button variant="ghost" size="lg" onClick={openContactModal}>
               Contact Us
             </Button>
           </div>
