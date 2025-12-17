@@ -21,10 +21,10 @@ export function HeroSection() {
             />
 
             {/* 3D Laptop Asset */}
-            <div className="relative z-10 w-full max-w-[519px]">
+            <div className="relative z-10 w-full max-w-[519px] transition-transform duration-500 hover:scale-105">
               <Image
                 src="/assets/bg-holder.png"
-                alt="Two Wings Dashboard Development"
+                alt="Two Wings Dashboard Development - Professional web development services"
                 width={519}
                 height={569}
                 priority
@@ -36,7 +36,7 @@ export function HeroSection() {
           <div className="text-center lg:text-left max-w-[584px] w-full justify-self-center lg:justify-self-start">
             {/* Badge */}
             <div className="flex justify-center lg:justify-start mb-8">
-              <div className="bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] px-4 py-2 rounded-[50px] flex items-center gap-2">
+              <div className="bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] px-4 py-2 rounded-[50px] flex items-center gap-2 transition-all duration-300 hover:border-[rgba(255,255,255,0.2)]">
                 <div className="w-6 h-6 shrink-0">
                   <SparkleIconBadge className="w-full h-full" />
                 </div>

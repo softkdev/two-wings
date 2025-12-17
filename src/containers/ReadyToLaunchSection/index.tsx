@@ -1,20 +1,25 @@
+"use client";
+
 import { Button, Container } from "@/components/ui";
 import Image from "next/image";
+import Lottie from "lottie-react";
+import rocketAnimation from "@/assets/animations/rocket-launching.json";
 
 export function ReadyToLaunchSection() {
   return (
     <section className="py-20 md:py-32">
       <Container>
         <div className="relative overflow-hidden rounded-button border border-white/10 shadow-[0px_80px_200px_rgba(0,0,0,0.55)]">
-          {/* Background Pattern - Same for both mobile and desktop */}
-          <div className="absolute inset-0 opacity-70 blur-sm">
+          {/* Background Pattern - Full width on mobile, left half on desktop */}
+          <div className="absolute inset-0 md:inset-y-0 md:left-0 md:w-1/2 opacity-[0.39] blur-[2.9px]">
             <Image
-              src="/star-pattern-bg.svg"
+              src="/pattern-bg.svg"
               alt=""
               className="w-full h-full object-cover object-center"
-              width={1200}
-              height={500}
+              width={1440}
+              height={326}
               unoptimized
+              aria-hidden="true"
             />
           </div>
 
@@ -41,14 +46,12 @@ export function ReadyToLaunchSection() {
             </div>
 
             {/* Rocket - Centered at bottom on mobile */}
-            <div className="relative mt-8 flex-shrink-0">
-              <Image
-                src="/rocket-ready-luch-mobile.svg"
-                alt="Ready to launch"
-                className="h-auto w-full max-w-[300px] object-contain mx-auto"
-                width={300}
-                height={300}
-                unoptimized
+            <div className="relative mt-8 shrink-0 w-full max-w-[300px] mx-auto aspect-square" aria-hidden="true">
+              <Lottie
+                animationData={rocketAnimation}
+                loop={true}
+                autoplay={true}
+                className="w-full h-full"
               />
             </div>
           </div>
@@ -73,15 +76,16 @@ export function ReadyToLaunchSection() {
             </div>
 
             {/* Desktop Rocket - Right side */}
-            <div className="absolute bottom-0 right-0 h-full w-1/2">
-              <Image
-                src="/rocket-two-wings.svg"
-                alt="Ready to launch"
-                className="h-full w-full object-contain object-center"
-                width={600}
-                height={600}
-                unoptimized
-              />
+            <div className="absolute bottom-0 right-0 h-full w-1/2 flex items-center justify-center overflow-hidden" aria-hidden="true">
+              <div className="w-full h-full max-w-full max-h-full flex items-center justify-center relative z-10">
+                <Lottie
+                  animationData={rocketAnimation}
+                  loop={true}
+                  autoplay={true}
+                  className="w-full h-full"
+                  style={{ maxWidth: "100%", maxHeight: "100%" }}
+                />
+              </div>
             </div>
           </div>
         </div>

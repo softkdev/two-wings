@@ -72,11 +72,12 @@ export function ProjectsSection() {
                 image={
                   <Image
                     src={project.mockupImage}
-                    alt={project.title}
+                    alt={`${project.title} - ${project.description}`}
                     fill
                     priority={project.id === "six-flags"}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 352px"
                     className="object-cover object-top"
+                    loading={project.id === "six-flags" ? "eager" : "lazy"}
                   />
                 }
               />

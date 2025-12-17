@@ -49,21 +49,21 @@ export function Footer() {
             <div className="flex gap-3 mt-2">
               <a
                 href="#"
-                className="w-9 h-9 rounded-full bg-[rgba(212,239,243,0.05)] flex items-center justify-center text-text-body-2 hover:text-text-title hover:bg-[rgba(212,239,243,0.1)] transition-colors"
+                className="w-9 h-9 rounded-full bg-[rgba(212,239,243,0.05)] flex items-center justify-center text-text-body-2 hover:text-text-title hover:bg-[rgba(212,239,243,0.1)] transition-all duration-300 hover:scale-110"
                 aria-label="LinkedIn"
               >
                 <LinkedInIcon className="w-[18px] h-[18px]" />
               </a>
               <a
                 href="#"
-                className="w-9 h-9 rounded-full bg-[rgba(212,239,243,0.05)] flex items-center justify-center text-text-body-2 hover:text-text-title hover:bg-[rgba(212,239,243,0.1)] transition-colors"
+                className="w-9 h-9 rounded-full bg-[rgba(212,239,243,0.05)] flex items-center justify-center text-text-body-2 hover:text-text-title hover:bg-[rgba(212,239,243,0.1)] transition-all duration-300 hover:scale-110"
                 aria-label="Instagram"
               >
                 <InstagramIcon className="w-[18px] h-[18px]" />
               </a>
               <a
                 href="#"
-                className="w-9 h-9 rounded-full bg-[rgba(212,239,243,0.05)] flex items-center justify-center text-text-body-2 hover:text-text-title hover:bg-[rgba(212,239,243,0.1)] transition-colors"
+                className="w-9 h-9 rounded-full bg-[rgba(212,239,243,0.05)] flex items-center justify-center text-text-body-2 hover:text-text-title hover:bg-[rgba(212,239,243,0.1)] transition-all duration-300 hover:scale-110"
                 aria-label="Twitter"
               >
                 <TwitterIcon className="w-[18px] h-[18px]" />
@@ -81,7 +81,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm md:text-base text-text-body-2 font-sans hover:text-text-title transition-colors"
+                    className="text-sm md:text-base text-text-body-2 font-sans hover:text-text-title transition-colors duration-300"
                   >
                     {link.label}
                   </Link>

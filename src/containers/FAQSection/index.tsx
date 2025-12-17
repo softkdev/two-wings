@@ -75,10 +75,10 @@ export function FAQSection() {
                 <div
                   key={faq.question}
                   className={cn(
-                    "rounded-[10px] flex bg-[#16181b] p-4 md:p-6 transition-all",
+                    "rounded-[10px] flex bg-[#16181b] p-4 md:p-6 transition-all duration-300 border border-transparent",
                     isOpen
-                      ? " flex-col gap-4"
-                      : "h-[78px] md:h-[72px] items-center"
+                      ? " flex-col gap-4 border-white/10"
+                      : "h-[78px] md:h-[72px] items-center hover:border-white/10"
                   )}
                 >
                   <button

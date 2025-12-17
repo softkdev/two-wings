@@ -6,10 +6,10 @@ export function Logo({ className }: LogoProps) {
   return (
     <div className={cn("flex items-center gap-3", className)}>
       <Image
-        src="/logo-icon.png"
+        src="/logo.svg"
         alt="Two Wings Logo"
-        width={84}
-        height={50}
+        width={65}
+        height={42}
         className="object-contain"
         priority
       />

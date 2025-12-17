@@ -18,3 +18,7 @@ export { ServiceCard } from "./ServiceCard";
 export { ProjectCard } from "./ProjectCard";
 export { ScrollToTop } from "./ScrollToTop";
 export { Modal } from "./Modal";
+export { ReasonCard } from "./ReasonCard";
+export type { ReasonCardProps } from "./ReasonCard";
+export { ProcessStep } from "./ProcessStep";
+export type { ProcessStepProps } from "./ProcessStep";

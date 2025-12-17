@@ -51,7 +51,7 @@ function Checkbox({
   onChange: () => void;
 }) {
   return (
-    <label className="relative flex cursor-pointer items-center gap-2 text-left">
+    <label className="relative flex cursor-pointer items-center gap-3 text-left group">
       <input
         type="checkbox"
         checked={checked}
@@ -60,15 +60,15 @@ function Checkbox({
       />
       <div
         className={cn(
-          "h-4 w-4 rounded border shrink-0 transition-colors",
+          "h-5 w-5 rounded border-2 shrink-0 transition-all duration-200 flex items-center justify-center",
           checked
             ? "bg-primary-base border-primary-base"
-            : "bg-[#1f1f2e] border-white/20"
+            : "bg-white/5 border-white/20 group-hover:border-white/30"
         )}
       >
         {checked && (
           <svg
-            className="h-full w-full"
+            className="h-3 w-3"
             viewBox="0 0 14 14"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -76,14 +76,14 @@ function Checkbox({
             <path
               d="M11.6609 3.49805L5.24739 9.91153L2.33217 6.99631"
               stroke="#0A0C0F"
-              strokeWidth="1.16609"
+              strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
           </svg>
         )}
       </div>
-      <span className="text-[16px] leading-container-x-sm text-text-body">
+      <span className="text-[16px] leading-[24px] text-text-body group-hover:text-text-title transition-colors">
         {label}
       </span>
     </label>
@@ -104,23 +104,26 @@ function RadioButton({
       type="button"
       onClick={onChange}
       className={cn(
-        "flex items-center gap-3 rounded-[10px] border px-3 py-1 h-[49px] transition-colors text-left",
+        "flex items-center gap-3 rounded-[10px] border px-4 py-3 h-[49px] transition-all duration-200 text-left",
         checked
-          ? "bg-white/5 border-white/10"
-          : "bg-white/5 border-white/10 hover:border-white/20"
+          ? "bg-white/5 border-primary-base/50 shadow-sm"
+          : "bg-white/5 border-white/10 hover:border-white/20 hover:bg-white/[0.07]"
       )}
     >
       <div
         className={cn(
-          "h-4 w-4 rounded-full border shrink-0 flex items-center justify-center transition-colors",
+          "h-5 w-5 rounded-full border-2 shrink-0 flex items-center justify-center transition-all duration-200",
           checked
-            ? "border-white/20 bg-transparent"
-            : "border-white/20 bg-transparent"
+            ? "border-primary-base"
+            : "border-white/30"
         )}
       >
-        {checked && <div className="h-2 w-2 rounded-full bg-white/60" />}
+        {checked && <div className="h-2.5 w-2.5 rounded-full bg-primary-base" />}
       </div>
-      <span className="text-[16px] leading-container-x-sm text-text-body flex-1">
+      <span className={cn(
+        "text-[16px] leading-[24px] flex-1 transition-colors",
+        checked ? "text-text-title" : "text-text-body"
+      )}>
         {label}
       </span>
     </button>
@@ -165,7 +168,7 @@ export function LetsBuildSection() {
             .
           </p>
         </div>
-        <div className="rounded-button border border-white/10 bg-[#16181b] p-6 md:p-12 shadow-[0px_60px_140px_rgba(0,0,0,0.55)]">
+        <div className="rounded-button border border-white/10 bg-[#16181b] p-6 md:p-12 shadow-[0px_60px_140px_rgba(0,0,0,0.55)] transition-all duration-300">
           <form className="flex flex-col gap-8">
             {/* Name, Email, Phone, Company */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -181,7 +184,7 @@ export function LetsBuildSection() {
                 <input
                   type="text"
                   placeholder="John Doe"
-                  className="h-12 rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-[16px] leading-container-x-sm text-white placeholder:text-text-secondary focus:border-primary-base focus:outline-none"
+                  className="h-12 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-[16px] leading-[24px] text-white placeholder:text-text-secondary focus:border-primary-base focus:outline-none focus:ring-1 focus:ring-primary-base/20 transition-all duration-200 hover:border-white/20"
                 />
               </label>
               <label className="flex flex-col gap-2">
@@ -196,7 +199,7 @@ export function LetsBuildSection() {
                 <input
                   type="email"
                   placeholder="john@example.com"
-                  className="h-12 rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-[16px] leading-container-x-sm text-white placeholder:text-text-secondary focus:border-primary-base focus:outline-none"
+                  className="h-12 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-[16px] leading-[24px] text-white placeholder:text-text-secondary focus:border-primary-base focus:outline-none focus:ring-1 focus:ring-primary-base/20 transition-all duration-200 hover:border-white/20"
                 />
               </label>
               <label className="flex flex-col gap-2">
@@ -206,7 +209,7 @@ export function LetsBuildSection() {
                 <input
                   type="tel"
                   placeholder="+1 (555) 123-4567"
-                  className="h-12 rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-[16px] leading-container-x-sm text-white placeholder:text-text-secondary focus:border-primary-base focus:outline-none"
+                  className="h-12 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-[16px] leading-[24px] text-white placeholder:text-text-secondary focus:border-primary-base focus:outline-none focus:ring-1 focus:ring-primary-base/20 transition-all duration-200 hover:border-white/20"
                 />
               </label>
               <label className="flex flex-col gap-2">
@@ -216,7 +219,7 @@ export function LetsBuildSection() {
                 <input
                   type="text"
                   placeholder="Your Company"
-                  className="h-12 rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-[16px] leading-container-x-sm text-white placeholder:text-text-secondary focus:border-primary-base focus:outline-none"
+                  className="h-12 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-[16px] leading-[24px] text-white placeholder:text-text-secondary focus:border-primary-base focus:outline-none focus:ring-1 focus:ring-primary-base/20 transition-all duration-200 hover:border-white/20"
                 />
               </label>
             </div>
@@ -259,7 +262,7 @@ export function LetsBuildSection() {
                     placeholder="Please describe the service you're looking for..."
                     disabled={!otherSelected}
                     className={cn(
-                      "h-12 rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-[16px] leading-container-x-sm text-white placeholder:text-text-secondary focus:border-primary-base focus:outline-none transition-opacity",
+                      "h-12 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-[16px] leading-[24px] text-white placeholder:text-text-secondary focus:border-primary-base focus:outline-none focus:ring-1 focus:ring-primary-base/20 transition-all duration-200 hover:border-white/20",
                       !otherSelected && "opacity-50 cursor-not-allowed"
                     )}
                   />
@@ -291,7 +294,8 @@ export function LetsBuildSection() {
               </span>
               <textarea
                 placeholder="Tell us about your project, timeline, budget, and any specific requirements..."
-                className="h-16 rounded-lg border border-white/10 bg-white/5 px-3 py-3 text-[16px] leading-container-x-sm text-white placeholder:text-text-secondary focus:border-primary-base focus:outline-none resize-none"
+                rows={4}
+                className="rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-[16px] leading-[24px] text-white placeholder:text-text-secondary focus:border-primary-base focus:outline-none focus:ring-1 focus:ring-primary-base/20 resize-none transition-all duration-200 hover:border-white/20"
               />
             </div>
 

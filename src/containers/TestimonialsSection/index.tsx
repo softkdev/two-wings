@@ -1,4 +1,5 @@
 import { Container } from "@/components/ui";
+import Image from "next/image";
 
 const testimonials = [
   {
@@ -30,7 +31,7 @@ export function TestimonialsSection() {
             What Our Clients Say
           </h2>
           <p className="mt-4 text-lg md:text-2xl leading-[26px] md:leading-[30px] text-text-body font-sans">
-            Real results, real impact. Here’s what partners say about building
+            Real results, real impact. Here&apos;s what partners say about building
             with Two Wings.
           </p>
         </div>
@@ -39,7 +40,7 @@ export function TestimonialsSection() {
           {testimonials.map((testimonial) => (
             <article
               key={testimonial.name}
-              className="relative flex h-full flex-col rounded-2xl border border-white/10 bg-[#0f1317] p-4 shadow-[0px_30px_80px_rgba(0,0,0,0.45)]"
+              className="relative flex h-full flex-col rounded-2xl border border-white/10 bg-[#0f1317] p-4 shadow-[0px_30px_80px_rgba(0,0,0,0.45)] transition-all duration-300 hover:border-white/20 hover:shadow-[0px_35px_90px_rgba(0,0,0,0.5)] hover:-translate-y-1"
             >
               <span className="text-4xl text-secondary-base">
                 <svg
@@ -62,13 +63,25 @@ export function TestimonialsSection() {
               <p className="mt-4 flex-1 text-[18px] leading-[28px] text-text-body">
                 {testimonial.quote}
               </p>
-              <div className="mt-8">
-                <p className="text-[18px] font-semibold text-white">
-                  {testimonial.name}
-                </p>
-                <p className="text-[14px] text-text-body-2">
-                  {testimonial.role}
-                </p>
+              <div className="mt-8 flex items-center gap-3">
+                <div className="relative h-12 w-12 shrink-0 rounded-full overflow-hidden ring-2 ring-white/10">
+                  <Image
+                    src="/avatars/ellipse-16.svg"
+                    alt={`${testimonial.name} avatar`}
+                    width={48}
+                    height={48}
+                    className="object-cover w-full h-full"
+                    unoptimized
+                  />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-[18px] font-semibold text-white truncate">
+                    {testimonial.name}
+                  </p>
+                  <p className="text-[14px] text-text-body-2 truncate">
+                    {testimonial.role}
+                  </p>
+                </div>
               </div>
             </article>
           ))}

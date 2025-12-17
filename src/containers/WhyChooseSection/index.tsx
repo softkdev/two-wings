@@ -1,14 +1,7 @@
-import { Container, Logo } from "@/components/ui";
-import { cn } from "@/lib";
+import { Container, Logo, ReasonCard } from "@/components/ui";
+import type { ReasonCardProps } from "@/components/ui";
 
-interface Reason {
-  title: string;
-  description: string;
-  accent: string;
-  align: "left" | "right";
-}
-
-const reasons: Reason[] = [
+const reasons: ReasonCardProps[] = [
   {
     title: "Smart Pricing",
     description:
@@ -51,29 +44,6 @@ const reasons: Reason[] = [
   },
 ];
 
-function ReasonCard({ title, description, align, accent }: Reason) {
-  return (
-    <div
-      className={cn(
-        "rounded-2xl border border-white/15 bg-linear-to-br backdrop-blur-sm px-6 py-5 shadow-[0px_12px_40px_rgba(0,0,0,0.4)]",
-        accent,
-        align === "right" ? "text-right items-end" : "text-left items-start"
-      )}
-    >
-      <div
-        className={cn(
-          "mb-3 h-px w-12 bg-primary-base/60",
-          align === "right" ? "ml-auto" : "mr-auto"
-        )}
-      />
-      <h3 className="text-[18px] font-semibold text-[#4fb5e3]">{title}</h3>
-      <p className="mt-2 text-[16px] leading-container-x-sm text-text-body">
-        {description}
-      </p>
-    </div>
-  );
-}
-
 export function WhyChooseSection() {
   const leftItems = reasons.filter((item) => item.align === "left");
   const rightItems = reasons.filter((item) => item.align === "right");
@@ -93,28 +63,81 @@ export function WhyChooseSection() {
         </div>
 
         {/* Desktop layout */}
-        <div className="mt-16 hidden lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-10">
-          <div className="flex flex-col gap-10">
+        <div className="mt-16 hidden lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-10 relative">
+          {/* Overlay SVG for connecting lines */}
+          <svg
+            className="absolute inset-0 pointer-events-none z-0"
+            style={{ width: "100%", height: "100%" }}
+          >
+            {/* Lines from left cards to center circle */}
+            {leftItems.map((_, index) => {
+              // Approximate positions: cards are in flex-col with gap-10
+              // Center circle is at 50% height, 50% of middle column
+              const cardY = index * 200 + 100; // Approximate card center Y
+              const centerX = 50; // Center of middle column (percentage)
+              const centerY = 50; // Center of circle (percentage)
+              const cardX = 25; // Left side of left column (percentage)
+              
+              return (
+                <line
+                  key={`left-${index}`}
+                  x1={`${cardX}%`}
+                  y1={`${cardY}px`}
+                  x2={`${centerX}%`}
+                  y2={`${centerY}%`}
+                  stroke="#f1d48f"
+                  strokeWidth="1"
+                  strokeOpacity="0.6"
+                  className="drop-shadow-sm"
+                />
+              );
+            })}
+            
+            {/* Lines from right cards to center circle */}
+            {rightItems.map((_, index) => {
+              const cardY = index * 200 + 100;
+              const centerX = 50;
+              const centerY = 50;
+              const cardX = 75; // Right side of right column (percentage)
+              
+              return (
+                <line
+                  key={`right-${index}`}
+                  x1={`${centerX}%`}
+                  y1={`${centerY}%`}
+                  x2={`${cardX}%`}
+                  y2={`${cardY}px`}
+                  stroke="#f1d48f"
+                  strokeWidth="1"
+                  strokeOpacity="0.6"
+                  className="drop-shadow-sm"
+                />
+              );
+            })}
+          </svg>
+
+          <div className="flex flex-col gap-10 relative z-10">
             {leftItems.map((reason) => (
-              <ReasonCard key={reason.title} {...reason} />
+              <div key={reason.title} className="relative">
+                <ReasonCard {...reason} />
+              </div>
             ))}
           </div>
 
-          <div className="relative flex items-center justify-center">
+          <div className="relative flex items-center justify-center z-10">
+            {/* Center circle with logo */}
             <div className="relative flex h-[360px] w-[360px] items-center justify-center rounded-full border border-white/10 bg-[radial-gradient(circle,#09121c_0%,#05080d_70%)] shadow-[0_0_120px_rgba(2,12,24,0.6)]">
               <div className="absolute inset-[18%] rounded-full border border-white/5" />
               <div className="absolute inset-[32%] rounded-full border border-white/5 opacity-60" />
               <Logo className="relative z-10 scale-110" />
             </div>
-            <span className="absolute top-1/2 left-0 h-px w-[160px] -translate-x-full bg-linear-to-l from-[#f1d48f] to-transparent opacity-60" />
-            <span className="absolute top-1/2 right-0 h-px w-[160px] -translate-y-1/2 bg-linear-to-r from-[#f1d48f] to-transparent opacity-60" />
-            <span className="absolute top-16 left-1/2 h-16 w-px -translate-x-1/2 bg-linear-to-t from-[#f1d48f] to-transparent opacity-60" />
-            <span className="absolute bottom-16 left-1/2 h-16 w-px -translate-x-1/2 bg-linear-to-b from-[#f1d48f] to-transparent opacity-60" />
           </div>
 
-          <div className="flex flex-col gap-10">
+          <div className="flex flex-col gap-10 relative z-10">
             {rightItems.map((reason) => (
-              <ReasonCard key={reason.title} {...reason} />
+              <div key={reason.title} className="relative">
+                <ReasonCard {...reason} />
+              </div>
             ))}
           </div>
         </div>

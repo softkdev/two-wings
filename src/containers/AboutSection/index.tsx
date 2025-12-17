@@ -105,11 +105,11 @@ export function AboutSection() {
           <div className="relative order-2 lg:order-1">
             <Image
               src="/about-us.svg"
-              alt="About Us"
+              alt="Two Wings team - Professional designers and developers creating digital solutions"
               width={520}
               height={520}
               unoptimized
-              className="opacity-90"
+              className="opacity-90 transition-opacity duration-300 hover:opacity-100"
             />
           </div>
 
@@ -134,14 +134,14 @@ export function AboutSection() {
             {/* Highlights */}
             <div className="flex flex-col gap-8">
               {highlights.map((item) => (
-                <div key={item.title} className="flex gap-4 items-center">
-                  <div className="flex items-center justify-center rounded-[10px] w-12 h-12 shrink-0">
-                    <div className="p-3 rounded-[10px] text-primary-base from-[#48ACBE] to-[#29ADC5] bg-linear-to-b">
+                <div key={item.title} className="flex gap-4 items-center transition-all duration-300 hover:translate-x-1">
+                  <div className="flex items-center justify-center rounded-[10px] w-12 h-12 shrink-0 transition-transform duration-300 group-hover:scale-110">
+                    <div className="p-3 rounded-[10px] text-primary-base from-[#48ACBE] to-[#29ADC5] bg-linear-to-b group">
                       {item.icon}
                     </div>
                   </div>
                   <div className="flex flex-col font-sans">
-                    <p className="text-[18px] leading-[28px] text-primary-base font-normal">
+                    <p className="text-[18px] leading-[28px] text-primary-base font-normal transition-colors duration-300">
                       {item.title}
                     </p>
                     <p className="text-[16px] leading-container-x-sm text-text-body font-normal">
@@ -155,7 +155,7 @@ export function AboutSection() {
             {/* CTA Button */}
             <button
               type="button"
-              className="h-12 px-6 rounded-button bg-secondary-base text-background-DEFAULT text-[16px] leading-container-x-sm font-sans font-bold hover:opacity-90 transition-opacity w-fit"
+              className="h-12 px-6 rounded-button bg-secondary-base text-background-DEFAULT text-[16px] leading-container-x-sm font-sans font-bold hover:opacity-90 transition-all duration-300 w-fit hover:scale-105"
             >
               Discover More
             </button>

@@ -47,12 +47,18 @@ export function Navigation() {
       <Container className="py-2 md:py-4">
         <div
           className={cn(
-            "flex items-center justify-between",
+            "relative flex items-center justify-between",
             "rounded-[32px] border border-[#06191d] px-4 sm:px-6 lg:px-10",
             "h-[73px] shadow-[0_20px_60px_rgba(0,0,0,0.45)]",
-            NAV_GRADIENT
+            "transition-all duration-300",
+            NAV_GRADIENT,
+            "overflow-hidden"
           )}
         >
+          {/* Top gradient */}
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+          {/* Bottom gradient */}
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
           {/* Logo */}
           <div className="shrink-0">
             <Logo />
