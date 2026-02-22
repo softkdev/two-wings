@@ -14,6 +14,9 @@ export * from "./ui";
 // Export layout component types
 export * from "./layout";
 
+// Export project data types
+export * from "./project";
+
 /**
  * Service type
  */

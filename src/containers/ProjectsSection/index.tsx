@@ -2,48 +2,13 @@ import { Container, Button, ProjectCard } from "@/components/ui";
 import { ROUTES } from "@/lib";
 import Image from "next/image";
 import Link from "next/link";
+import type { Project } from "@/types/project";
 
-type ProjectItem = {
-  id: string;
-  title: string;
-  description: string;
-  mockupImage: string;
-};
+interface ProjectsSectionProps {
+  projects: Project[];
+}
 
-const baseProjects: ProjectItem[] = [
-  {
-    id: "six-flags",
-    title: "Six Flags – Qiddiya City",
-    description:
-      "An immersive landing experience for Six Flags Qiddiya City, the first Six Flags park in the Middle East.",
-    mockupImage: "/assets/projects/sixflags-mockup.png",
-  },
-  {
-    id: "my-sport-time",
-    title: "My Sport Time",
-    description:
-      "A multi-platform sports management ecosystem consisting of two panels and native mobile apps.",
-    mockupImage: "/assets/projects/mysporttime-mockup.png",
-  },
-  {
-    id: "jesus-revival",
-    title: "Jesus Revival Church",
-    description:
-      "A faith-centered website designed to share religious events, community news, and streaming content.",
-    mockupImage: "/assets/projects/jesus-revival-mockup.webp",
-  },
-];
-
-// Duplicate set to mirror Figma's two-row grid layout
-const projects: ProjectItem[] = [
-  ...baseProjects,
-  ...baseProjects.map((project) => ({
-    ...project,
-    id: `${project.id}-repeat`,
-  })),
-];
-
-export function ProjectsSection() {
+export function ProjectsSection({ projects }: ProjectsSectionProps) {
   return (
     <section className="py-20 md:py-32">
       <Container>
@@ -65,17 +30,17 @@ export function ProjectsSection() {
               <ProjectCard
                 key={project.id}
                 title={project.title}
-                description={project.description}
-                href={`${ROUTES.PROJECTS}/${project.id}`}
+                description={project.shortDescription}
+                href={`${ROUTES.PROJECTS}/${project.slug}`}
                 image={
                   <Image
-                    src={project.mockupImage}
-                    alt={`${project.title} - ${project.description}`}
+                    src={project.thumbnailImage}
+                    alt={project.title}
                     fill
-                    priority={project.id === "six-flags"}
+                    priority={project.id === projects[0]?.id}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 352px"
                     className="object-cover object-top"
-                    loading={project.id === "six-flags" ? "eager" : "lazy"}
+                    loading={project.id === projects[0]?.id ? "eager" : "lazy"}
                   />
                 }
               />

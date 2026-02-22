@@ -13,6 +13,7 @@ export { HeroSection } from "./HeroSection";
 export { StatsBar } from "./StatsBar";
 export { ServicesSection } from "./ServicesSection";
 export { ProjectsSection } from "./ProjectsSection";
+export { ProjectsListClient } from "./ProjectsListClient";
 export { CTASection } from "./CTASection";
 export { WhyChooseSection } from "./WhyChooseSection";
 export { WorkingProcessSection } from "./WorkingProcessSection";

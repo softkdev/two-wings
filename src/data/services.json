@@ -1,0 +1,93 @@
+{
+  "hero": {
+    "title": "Our Services",
+    "description": "From simple websites to complex enterprise systems, we have the expertise and technology stack to bring your vision to life.",
+    "ctaLabel": "Get Started"
+  },
+  "filterCategories": [
+    {
+      "id": "websites",
+      "title": "Websites & Online Presence",
+      "options": [
+        { "id": "landing", "label": "Landing Pages & Marketing Sites" },
+        { "id": "ecommerce", "label": "E-Commerce Solutions" },
+        { "id": "education", "label": "Educational & Content Platforms" }
+      ]
+    },
+    {
+      "id": "apps",
+      "title": "Apps & Digital Platforms",
+      "options": [
+        { "id": "mobile", "label": "Mobile Applications" },
+        { "id": "communication", "label": "Communication Tools" },
+        { "id": "support", "label": "Customer Support Systems" }
+      ]
+    },
+    {
+      "id": "business",
+      "title": "Business & Operations Tools",
+      "options": [
+        { "id": "management", "label": "Business Management Tools" },
+        { "id": "dashboards", "label": "Custom Dashboards & Admin Panels" }
+      ]
+    },
+    {
+      "id": "advanced",
+      "title": "Advanced & Custom Solutions",
+      "options": [
+        { "id": "ai", "label": "AI-Powered Systems" },
+        { "id": "ux-ui", "label": "UX/UI Design" }
+      ]
+    }
+  ],
+  "services": [
+    {
+      "id": "ux-ui-design",
+      "title": "UX/UI Design",
+      "description": "User research, wireframing, prototyping, visual design, usability testing, and developer handoff",
+      "iconKey": "design",
+      "iconBackground": "#fcdce7",
+      "categoryIds": ["ux-ui"]
+    },
+    {
+      "id": "e-commerce",
+      "title": "E-Commerce Solutions",
+      "description": "Online stores with product catalogs, carts, payment gateways, multi-vendor marketplaces, and custom dashboards",
+      "iconKey": "cart",
+      "iconBackground": "#f1fcdc",
+      "categoryIds": ["ecommerce"]
+    },
+    {
+      "id": "mobile-apps",
+      "title": "Mobile Applications",
+      "description": "Full-featured iOS & Android apps for on-demand services, education, health, social platforms, and events",
+      "iconKey": "mobile",
+      "iconBackground": "#dce7fc",
+      "categoryIds": ["mobile"]
+    },
+    {
+      "id": "business-tools",
+      "title": "Business Management Tools",
+      "description": "CRM, ERP, project management, team collaboration, and scheduling tools for appointments and bookings",
+      "iconKey": "dashboard",
+      "iconBackground": "#dcfcfc",
+      "categoryIds": ["management", "dashboards"]
+    },
+    {
+      "id": "ai-systems",
+      "title": "AI-Powered Systems",
+      "description": "Chatbot assistants, document summarization, smart search, recommendation systems, and OCR",
+      "iconKey": "ai",
+      "iconBackground": "#e7dcfc",
+      "categoryIds": ["ai"]
+    },
+    {
+      "id": "education",
+      "title": "Educational & Content Platforms",
+      "description": "Online course platforms, document libraries, video streaming, webinar systems, and quiz platforms",
+      "iconKey": "education",
+      "iconBackground": "#fce9dc",
+      "categoryIds": ["education"]
+    }
+  ]
+}

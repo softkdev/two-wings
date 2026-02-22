@@ -1,45 +1,12 @@
+import Link from "next/link";
 import { ServiceCard, Container, Button } from "@/components/ui";
-import { SERVICES } from "@/lib";
-import {
-  DesignIcon,
-  CartIcon,
-  MobileIcon,
-  DashboardIcon,
-  AIIcon,
-  EducationIcon,
-} from "@/assets/icons";
-
-const SERVICE_META: Record<
-  string,
-  { icon: React.ReactNode; iconBackground: string }
-> = {
-  "ux-ui-design": {
-    icon: <DesignIcon className="w-8 h-8 text-text-title" />,
-    iconBackground: "#fcdce7",
-  },
-  "e-commerce": {
-    icon: <CartIcon className="w-8 h-8 text-text-title" />,
-    iconBackground: "#f1fcdc",
-  },
-  "mobile-apps": {
-    icon: <MobileIcon className="w-8 h-8 text-text-title" />,
-    iconBackground: "#dce7fc",
-  },
-  "business-tools": {
-    icon: <DashboardIcon className="w-8 h-8 text-text-title" />,
-    iconBackground: "#dcfcfc",
-  },
-  "ai-systems": {
-    icon: <AIIcon className="w-8 h-8 text-text-title" />,
-    iconBackground: "#e7dcfc",
-  },
-  education: {
-    icon: <EducationIcon className="w-8 h-8 text-text-title" />,
-    iconBackground: "#fce9dc",
-  },
-};
+import { getServicesData } from "@/lib/data/services";
+import { getIconForService } from "@/lib/data/service-icons";
+import { ROUTES } from "@/lib";
 
 export function ServicesSection() {
+  const { services } = getServicesData();
+
   return (
     <section className="py-20 md:py-32">
       <Container>
@@ -57,14 +24,13 @@ export function ServicesSection() {
 
           {/* Services Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {SERVICES.map((service) => {
-              const meta =
-                SERVICE_META[service.id] ?? SERVICE_META["ux-ui-design"];
+            {services.map((service) => {
+              const { icon, iconBackground } = getIconForService(service.iconKey);
               return (
                 <ServiceCard
                   key={service.id}
-                  icon={meta.icon}
-                  iconBackground={meta.iconBackground}
+                  icon={icon}
+                  iconBackground={iconBackground}
                   title={service.title}
                   description={service.description}
                 />
@@ -74,28 +40,30 @@ export function ServicesSection() {
 
           {/* CTA Button */}
           <div className="flex justify-end">
-            <Button
-              variant="outline"
-              size="md"
-              className="w-[174px] h-12 rounded-button border-secondary-base text-secondary-base"
-              rightIcon={
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={1.8}
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M5 12h14m-6-6 6 6-6 6"
-                  />
-                </svg>
-              }
-            >
-              All Services
-            </Button>
+            <Link href={ROUTES.SERVICES}>
+              <Button
+                variant="outline"
+                size="md"
+                className="w-[174px] h-12 rounded-button border-secondary-base text-secondary-base"
+                rightIcon={
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={1.8}
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M5 12h14m-6-6 6 6-6 6"
+                    />
+                  </svg>
+                }
+              >
+                All Services
+              </Button>
+            </Link>
           </div>
         </div>
       </Container>

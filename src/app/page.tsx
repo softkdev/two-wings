@@ -11,15 +11,21 @@ import {
   FAQSection,
   ReadyToLaunchSection,
 } from "@/containers";
+import { getProjectsList } from "@/lib/projects";
 
-export default function Home() {
+const RECENT_PROJECTS_COUNT = 6;
+
+export default async function Home() {
+  const allProjects = await getProjectsList();
+  const recentProjects = allProjects.slice(0, RECENT_PROJECTS_COUNT);
+
   return (
     <>
       <HeroSection />
       <StatsBar />
       <ServicesSection />
       <WhyChooseSection />
-      <ProjectsSection />
+      <ProjectsSection projects={recentProjects} />
       <WorkingProcessSection />
       <AboutSection />
       <TestimonialsSection />

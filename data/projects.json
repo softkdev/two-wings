@@ -1,0 +1,134 @@
+{
+  "meta": {
+    "pageSize": 8,
+    "filters": [
+      { "slug": "all", "label": "All Projects", "icon": null },
+      { "slug": "web-design", "label": "Web Design", "icon": null },
+      { "slug": "mobile-app", "label": "Mobile App", "icon": null },
+      { "slug": "ui-ux-design", "label": "UI/UX Design", "icon": null },
+      { "slug": "web-development", "label": "Web Development", "icon": null }
+    ]
+  },
+  "listPage": {
+    "title": "Our Projects",
+    "description": "From corporate websites to dynamic mobile applications and engaging UI/UX designs, we've developed a wide range of projects for clients across various industries."
+  },
+  "contactSection": {
+    "title": "Let's Build Something Amazing Together",
+    "description": "If you have a new project in your mind, let us know and we will get back to you with a comprehensive proposal.",
+    "email": "info@twowingsagent.com",
+    "submitLabel": "Send Message"
+  },
+  "footer": {
+    "companyDescription": "Two Wings is a digital agency that helps businesses grow online.",
+    "quickLinks": [
+      { "label": "Home", "url": "/" },
+      { "label": "Services", "url": "/services" },
+      { "label": "Projects", "url": "/projects" },
+      { "label": "About", "url": "/about" },
+      { "label": "Blog", "url": "/blog" },
+      { "label": "Contact", "url": "/contact" }
+    ],
+    "contactInfo": {
+      "location": "Remote Team, Worldwide",
+      "email": "2wings.companies@gmail.com",
+      "phone": "+31687433276"
+    },
+    "copyrightText": "Copyright © 2026 Two Wings. All Rights Reserved.",
+    "socialLinks": [
+      { "platform": "Facebook", "url": null },
+      { "platform": "Instagram", "url": null },
+      { "platform": "LinkedIn", "url": null },
+      { "platform": "Dribbble", "url": null }
+    ]
+  },
+  "projects": [
+    {
+      "id": "six-flags",
+      "slug": "six-flags",
+      "category": "web-design",
+      "title": "Six Flags – Qiddiya City",
+      "shortDescription": "An immersive landing experience for Six Flags Qiddiya City, the first Six Flags park in the Middle East.",
+      "fullDescription": "An innovative land for a great race for Six Flags Qiddiya City. The first Six Flags park in Saudi Arabia. Developed with Cursor was a big step. It was a new idea for the project, where we developed all the sections including the logo, the slider and awesome animations.",
+      "technologies": ["React", "Next.js", "TypeScript", "TailwindCSS"],
+      "tags": ["Web", "Design", "Mobile", "3D Modeling", "Branding"],
+      "thumbnailImage": "/assets/projects/sixflags-mockup.png",
+      "carouselImages": [
+        "/assets/projects/sixflags-mockup.png",
+        "/assets/projects/sixflags-mockup.png",
+        "/assets/projects/sixflags-mockup.png"
+      ],
+      "overview": "An overview of the vision, scope, and objectives of the project.",
+      "problem": "The problem statement regarding the challenges faced, existing pain points, or deficiencies. This section outlines the issues that were faced, challenges, and details about the situation.",
+      "solution": "An explanation describing how the project solves the problem. This could include innovative approaches, new technologies, or improved processes that were implemented to provide value.",
+      "commitment": {
+        "title": "Our Commitment",
+        "description": "We are committed to delivering high-quality digital experiences that align with our client's vision and drive measurable results."
+      },
+      "todayWork": {
+        "title": "Today's Work",
+        "description": "A showcase of our latest design and development work for Six Flags Qiddiya City.",
+        "image": "/assets/projects/sixflags-mockup.png"
+      },
+      "relatedProjectIds": ["my-sport-time", "jesus-revival"]
+    },
+    {
+      "id": "my-sport-time",
+      "slug": "my-sport-time",
+      "category": "mobile-app",
+      "title": "My Sport Time",
+      "shortDescription": "A multi-platform sports management ecosystem consisting of two panels and native mobile apps.",
+      "fullDescription": "A comprehensive sports management platform with admin and user panels, plus native iOS and Android applications for athletes and organizers.",
+      "technologies": ["React", "React Native", "Node.js", "PostgreSQL"],
+      "tags": ["Mobile", "Web", "Sports", "Dashboard"],
+      "thumbnailImage": "/assets/projects/mysporttime-mockup.png",
+      "carouselImages": [
+        "/assets/projects/mysporttime-mockup.png",
+        "/assets/projects/mysporttime-mockup.png",
+        "/assets/projects/mysporttime-mockup.png"
+      ],
+      "overview": "A full-stack sports management solution designed to streamline event registration, scheduling, and participant communication.",
+      "problem": "Sports organizations needed a unified platform to manage multiple events, handle registrations, and communicate with participants across web and mobile.",
+      "solution": "We built a scalable ecosystem with role-based dashboards, real-time updates, and native mobile apps for the best on-the-go experience.",
+      "commitment": {
+        "title": "Our Commitment",
+        "description": "We committed to a user-first design and robust backend that could scale with growing user bases and event complexity."
+      },
+      "todayWork": {
+        "title": "Today's Work",
+        "description": "Ongoing enhancements to the mobile apps and admin panel based on user feedback.",
+        "image": "/assets/projects/mysporttime-mockup.png"
+      },
+      "relatedProjectIds": ["six-flags", "jesus-revival"]
+    },
+    {
+      "id": "jesus-revival",
+      "slug": "jesus-revival",
+      "category": "web-development",
+      "title": "Jesus Revival Church",
+      "shortDescription": "A faith-centered website designed to share religious events, community news, and streaming content.",
+      "fullDescription": "A faith-centered website designed to share religious events, community news, and streaming content with the congregation and visitors.",
+      "technologies": ["Next.js", "TypeScript", "TailwindCSS", "Vimeo"],
+      "tags": ["Web", "Community", "Streaming", "Events"],
+      "thumbnailImage": "/assets/projects/jesus-revival-mockup.webp",
+      "carouselImages": [
+        "/assets/projects/jesus-revival-mockup.webp",
+        "/assets/projects/jesus-revival-mockup.webp",
+        "/assets/projects/jesus-revival-mockup.webp"
+      ],
+      "overview": "A modern church website to keep the community connected through events, news, and live streaming capabilities.",
+      "problem": "The church needed a single place to publish events, sermons, and stream services for both desktop and mobile users.",
+      "solution": "We delivered a fast, accessible Next.js site with integrated streaming, event calendar, and a clear content structure for easy updates.",
+      "commitment": {
+        "title": "Our Commitment",
+        "description": "We committed to accessibility, performance, and ease of content updates so the team could focus on their mission."
+      },
+      "todayWork": {
+        "title": "Today's Work",
+        "description": "Regular content updates and feature additions for new streaming and event needs.",
+        "image": "/assets/projects/jesus-revival-mockup.webp"
+      },
+      "relatedProjectIds": ["six-flags", "my-sport-time"]
+    }
+  ]
+}

@@ -47,48 +47,6 @@ export const COMPANY_INFO = {
 } as const;
 
 /**
- * Services offered
- */
-export const SERVICES = [
-  {
-    id: "ux-ui-design",
-    title: "UX/UI Design",
-    description:
-      "User research, wireframing, prototyping, visual design, usability testing, and developer handoff",
-  },
-  {
-    id: "e-commerce",
-    title: "E-Commerce Solutions",
-    description:
-      "Online stores with product catalogs, carts, payment gateways, multi-vendor marketplaces, and custom dashboards",
-  },
-  {
-    id: "mobile-apps",
-    title: "Mobile Applications",
-    description:
-      "Full-featured iOS & Android apps for on-demand services, education, health, social platforms, and events",
-  },
-  {
-    id: "business-tools",
-    title: "Business Management Tools",
-    description:
-      "CRM, ERP, project management, team collaboration, and scheduling tools for appointments and bookings",
-  },
-  {
-    id: "ai-systems",
-    title: "AI-Powered Systems",
-    description:
-      "Chatbot assistants, document summarization, smart search, recommendation systems, and OCR",
-  },
-  {
-    id: "education",
-    title: "Educational & Content Platforms",
-    description:
-      "Online course platforms, document libraries, video streaming, webinar systems, and quiz platforms",
-  },
-] as const;
-
-/**
  * Statistics
  */
 export const STATS = [

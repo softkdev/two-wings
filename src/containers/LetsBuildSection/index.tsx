@@ -2,34 +2,16 @@
 
 import { useState } from "react";
 import { Container } from "@/components/ui";
+import { getServicesData } from "@/lib/data/services";
 import { cn } from "@/lib";
 
-const serviceGroups = [
-  {
-    title: "Websites & Online Presence",
-    options: [
-      "Landing Pages & Marketing Sites",
-      "E-Commerce Solutions",
-      "Educational & Content Platforms",
-    ],
-  },
-  {
-    title: "Apps & Digital Platforms",
-    options: [
-      "Mobile Applications",
-      "Communication Tools",
-      "Customer Support Systems",
-    ],
-  },
-  {
-    title: "Business & Operations Tools",
-    options: ["Business Management Tools", "Custom Dashboards & Admin Panels"],
-  },
-  {
-    title: "Advanced & Custom Solutions",
-    options: ["AI-Powered Systems", "UX/UI Design"],
-  },
-];
+const serviceGroups = (() => {
+  const { filterCategories } = getServicesData();
+  return filterCategories.map((category) => ({
+    title: category.title,
+    options: category.options.map((opt) => opt.label),
+  }));
+})();
 
 const budgetOptions = [
   "Under €1,000",
