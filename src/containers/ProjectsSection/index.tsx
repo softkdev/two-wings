@@ -1,11 +1,12 @@
 import { Container, Button, ProjectCard } from "@/components/ui";
+import { ROUTES } from "@/lib";
 import Image from "next/image";
+import Link from "next/link";
 
 type ProjectItem = {
   id: string;
   title: string;
   description: string;
-  technologies: string[];
   mockupImage: string;
 };
 
@@ -15,7 +16,6 @@ const baseProjects: ProjectItem[] = [
     title: "Six Flags – Qiddiya City",
     description:
       "An immersive landing experience for Six Flags Qiddiya City, the first Six Flags park in the Middle East.",
-    technologies: ["Animation", "Swiper.js", "Svelte", "+3"],
     mockupImage: "/assets/projects/sixflags-mockup.png",
   },
   {
@@ -23,7 +23,6 @@ const baseProjects: ProjectItem[] = [
     title: "My Sport Time",
     description:
       "A multi-platform sports management ecosystem consisting of two panels and native mobile apps.",
-    technologies: ["TypeScript", "Next.js", "React.js", "+3"],
     mockupImage: "/assets/projects/mysporttime-mockup.png",
   },
   {
@@ -31,7 +30,6 @@ const baseProjects: ProjectItem[] = [
     title: "Jesus Revival Church",
     description:
       "A faith-centered website designed to share religious events, community news, and streaming content.",
-    technologies: ["React.js", "Next.js", "SEO Optimization", "+3"],
     mockupImage: "/assets/projects/jesus-revival-mockup.webp",
   },
 ];
@@ -68,7 +66,7 @@ export function ProjectsSection() {
                 key={project.id}
                 title={project.title}
                 description={project.description}
-                technologies={project.technologies}
+                href={`${ROUTES.PROJECTS}/${project.id}`}
                 image={
                   <Image
                     src={project.mockupImage}
@@ -86,28 +84,30 @@ export function ProjectsSection() {
 
           {/* CTA Button */}
           <div className="flex justify-end">
-            <Button
-              variant="outline"
-              size="md"
-              className="w-[174px] h-12 rounded-button border-secondary-base text-secondary-base"
-              rightIcon={
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={1.8}
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M5 12h14m-6-6 6 6-6 6"
-                  />
-                </svg>
-              }
-            >
-              All Project
-            </Button>
+            <Link href={ROUTES.PROJECTS}>
+              <Button
+                variant="outline"
+                size="md"
+                className="w-[174px] h-12 rounded-button border-secondary-base text-secondary-base"
+                rightIcon={
+                  <svg
+                    className="w-5 h-5 shrink-0 text-secondary-base"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={1.8}
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M5 12h14m-6-6 6 6-6 6"
+                    />
+                  </svg>
+                }
+              >
+                All Project
+              </Button>
+            </Link>
           </div>
         </div>
       </Container>

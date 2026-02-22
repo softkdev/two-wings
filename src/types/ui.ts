@@ -91,7 +91,7 @@ export interface ProjectCardProps {
   image: ReactNode;
   title: string;
   description: string;
-  technologies: string[];
+  href?: string;
   className?: string;
 }
 

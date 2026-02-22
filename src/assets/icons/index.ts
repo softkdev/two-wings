@@ -8,6 +8,12 @@
  * <DesignIcon className="w-8 h-8 text-primary-base" />
  */
 
+// Working Process Icons
+export { default as SearchIcon } from "./search.svg";
+export { default as CodeIcon } from "./code.svg";
+export { default as DocumentCheckIcon } from "./document-check.svg";
+export { default as RocketIcon } from "./rocket.svg";
+
 // Service Icons
 export { default as DesignIcon } from "./design.svg";
 export { default as CartIcon } from "./cart.svg";
@@ -17,6 +23,7 @@ export { default as AIIcon } from "./ai.svg";
 export { default as EducationIcon } from "./education.svg";
 
 // UI Icons
+export { default as ExternalLinkIcon } from "./external-link.svg";
 export { default as SparkleIcon } from "./sparkle.svg";
 export { default as SparkleIconBadge } from "./sparkle-badge.svg";
 

@@ -41,6 +41,82 @@ const budgetOptions = [
   "Not sure yet",
 ];
 
+const formSectionIcons = {
+  person: (
+    <svg
+      className="w-5 h-5 shrink-0 text-secondary-base"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+      <circle cx="12" cy="7" r="4" />
+    </svg>
+  ),
+  briefcase: (
+    <svg
+      className="w-5 h-5 shrink-0 text-secondary-base"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect width="20" height="14" x="2" y="7" rx="2" ry="2" />
+      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+    </svg>
+  ),
+  dollar: (
+    <svg
+      className="w-5 h-5 shrink-0 text-secondary-base"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="12" x2="12" y1="2" y2="22" />
+      <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+    </svg>
+  ),
+  folder: (
+    <svg
+      className="w-5 h-5 shrink-0 text-secondary-base"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
+      <path d="M2 10h20" />
+    </svg>
+  ),
+};
+
+function SectionHeader({
+  icon,
+  title,
+}: {
+  icon: React.ReactNode;
+  title: string;
+}) {
+  return (
+    <div className="flex items-center gap-2 mb-4">
+      {icon}
+      <span className="text-[16px] leading-[24px] text-primary-base font-medium">
+        {title}
+      </span>
+    </div>
+  );
+}
+
 function Checkbox({
   label,
   checked,
@@ -62,7 +138,7 @@ function Checkbox({
         className={cn(
           "h-5 w-5 rounded border-2 shrink-0 transition-all duration-200 flex items-center justify-center",
           checked
-            ? "bg-primary-base border-primary-base"
+            ? "bg-secondary-base border-secondary-base"
             : "bg-white/5 border-white/20 group-hover:border-white/30"
         )}
       >
@@ -75,7 +151,7 @@ function Checkbox({
           >
             <path
               d="M11.6609 3.49805L5.24739 9.91153L2.33217 6.99631"
-              stroke="#0A0C0F"
+              stroke="white"
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -170,8 +246,13 @@ export function LetsBuildSection() {
         </div>
         <div className="rounded-button border border-white/10 bg-[#16181b] p-6 md:p-12 shadow-[0px_60px_140px_rgba(0,0,0,0.55)] transition-all duration-300">
           <form className="flex flex-col gap-8">
-            {/* Name, Email, Phone, Company */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Personal Information */}
+            <div>
+              <SectionHeader
+                icon={formSectionIcons.person}
+                title="Personal Information"
+              />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <label className="flex flex-col gap-2">
                 <div className="flex items-center gap-2 h-6">
                   <span className="text-[16px] leading-container-x-sm text-text-title">
@@ -222,13 +303,15 @@ export function LetsBuildSection() {
                   className="h-12 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-[16px] leading-[24px] text-white placeholder:text-text-secondary focus:border-primary-base focus:outline-none focus:ring-1 focus:ring-primary-base/20 transition-all duration-200 hover:border-white/20"
                 />
               </label>
+              </div>
             </div>
 
-            {/* Services */}
-            <div className="flex flex-col gap-2">
-              <span className="text-[16px] leading-container-x-sm text-text-title">
-                What services are you interested in?
-              </span>
+            {/* Services Interested In */}
+            <div className="flex flex-col gap-6">
+              <SectionHeader
+                icon={formSectionIcons.briefcase}
+                title="Services Interested In"
+              />
               <div className="flex flex-col gap-6">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   {serviceGroups.map((group) => (
@@ -270,11 +353,12 @@ export function LetsBuildSection() {
               </div>
             </div>
 
-            {/* Budget */}
+            {/* Budget Range */}
             <div className="flex flex-col gap-4">
-              <span className="text-[16px] leading-container-x-sm text-text-title">
-                What is your estimated budget range?
-              </span>
+              <SectionHeader
+                icon={formSectionIcons.dollar}
+                title="Budget Range"
+              />
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 {budgetOptions.map((budget) => (
                   <RadioButton
@@ -288,10 +372,11 @@ export function LetsBuildSection() {
             </div>
 
             {/* Project Details */}
-            <div className="flex flex-col gap-2">
-              <span className="text-[16px] leading-container-x-sm text-text-title">
-                Project Details
-              </span>
+            <div className="flex flex-col gap-4">
+              <SectionHeader
+                icon={formSectionIcons.folder}
+                title="Project Details"
+              />
               <textarea
                 placeholder="Tell us about your project, timeline, budget, and any specific requirements..."
                 rows={4}

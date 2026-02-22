@@ -36,29 +36,25 @@ export function Navigation() {
 
   return (
     <nav
-      className={cn(
-        "sticky top-0 z-50 transition-all duration-300",
-        "md:bg-background-DEFAULT/80 backdrop-blur-sm",
-        isScrolled && "border-b border-border-DEFAULT"
-      )}
+      className="sticky top-0 z-50 transition-all duration-300"
       role="navigation"
       aria-label="Main navigation"
     >
-      <Container className="py-2 md:py-4">
+      <div className="py-2 md:py-4 max-w-[1170px] mx-auto">
         <div
           className={cn(
             "relative flex items-center justify-between",
-            "rounded-[32px] border border-[#06191d] px-4 sm:px-6 lg:px-10",
+            "rounded-button border border-[#06191d] px-4 sm:px-6 lg:px-10",
             "h-[73px] shadow-[0_20px_60px_rgba(0,0,0,0.45)]",
             "transition-all duration-300",
             NAV_GRADIENT,
-            "overflow-hidden"
+            "overflow-hidden",
           )}
         >
           {/* Top gradient */}
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
           {/* Bottom gradient */}
-          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
           {/* Logo */}
           <div className="shrink-0">
             <Logo />
@@ -135,7 +131,7 @@ export function Navigation() {
             "lg:hidden overflow-hidden transition-all duration-300 ease-in-out mt-2",
             isMobileMenuOpen
               ? "max-h-[500px] opacity-100 pb-6"
-              : "max-h-0 opacity-0"
+              : "max-h-0 opacity-0",
           )}
         >
           <div className="flex flex-col gap-6 pt-6 border-t border-white/10 rounded-card bg-[#0b1015]/50 p-6">
@@ -166,7 +162,7 @@ export function Navigation() {
             </Button>
           </div>
         </div>
-      </Container>
+      </div>
     </nav>
   );
 }

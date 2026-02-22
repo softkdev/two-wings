@@ -1,12 +1,12 @@
 import type { ProjectCardProps } from "@/types/ui";
 import { cn } from "@/lib";
-import { Badge } from "./Badge";
+import Link from "next/link";
 
 export function ProjectCard({
   image,
   title,
   description,
-  technologies,
+  href,
   className,
 }: ProjectCardProps) {
   return (
@@ -21,10 +21,7 @@ export function ProjectCard({
       )}
     >
       {/* Image/Mockup Container */}
-      <div className="relative bg-[#050a10] p-2  overflow-hidden">
-        <div className="absolute -top-8 -left-6 h-48 w-48 rounded-full bg-[#29adc5]/20 blur-[100px]" />
-        <div className="absolute -bottom-8 -right-6 h-40 w-40 rounded-full bg-[#ffc83a]/20 blur-[90px]" />
-
+      <div className="relative bg-[#050a10] p-2 overflow-hidden">
         <div className="relative z-10 rounded-[14px] overflow-hidden flex items-center justify-center min-h-[260px]">
           <div className="relative w-full h-[260px]">{image}</div>
         </div>
@@ -32,25 +29,34 @@ export function ProjectCard({
 
       {/* Content */}
       <div className="p-4 space-y-4">
-        <h3 className="text-[18px] leading-[28px] font-normal text-[#70c8d8]">
+        <h3 className="text-[18px] leading-[28px] font-normal text-text-title">
           {title}
         </h3>
         <p className="text-base ellipse-line-2 pb-1 leading-container-x-sm text-text-body font-sans">
           {description}
         </p>
 
-        <div className="flex gap-2 scrollbar-hide">
-          {technologies.map((tech) => (
-            <Badge
-              key={`${title}-${tech}`}
-              size="sm"
-              color="primary"
-              className="border-white/15 bg-white/5"
+        {href && (
+          <Link
+            href={href}
+            className="inline-flex items-center gap-2 mt-2 text-text-title font-sans text-base leading-container-x-sm hover:text-secondary-base transition-colors"
+          >
+            View Project
+            <svg
+              className="w-5 h-5 text-secondary-base shrink-0"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={1.8}
+              viewBox="0 0 24 24"
             >
-              {tech}
-            </Badge>
-          ))}
-        </div>
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M5 12h14m-6-6 6 6-6 6"
+              />
+            </svg>
+          </Link>
+        )}
       </div>
     </article>
   );
