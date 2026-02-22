@@ -1,5 +1,9 @@
+"use client";
+
 import type { ComponentType } from "react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib";
+import { defaultTransition } from "@/lib/animations";
 
 export interface ProcessStepProps {
   number: string;
@@ -23,7 +27,11 @@ export function ProcessStep({
 
   if (isMobile) {
     return (
-      <div className="relative flex items-start gap-4 group">
+      <motion.div
+        className="relative flex items-start gap-4 group"
+        whileHover={{ scale: 1.01 }}
+        transition={defaultTransition}
+      >
         <div
           className={cn(
             "flex h-12 w-12 items-center justify-center text-[20px] font-semibold text-white shrink-0",
@@ -49,13 +57,17 @@ export function ProcessStep({
             {description}
           </p>
         </div>
-      </div>
+      </motion.div>
     );
   }
 
   // Desktop layout (Figma): number italic accent above-left, icon block 3D, title underline, description left-align
   return (
-    <div className="relative flex flex-col items-start text-left group">
+    <motion.div
+      className="relative flex flex-col items-start text-left group"
+      whileHover={{ scale: 1.02 }}
+      transition={defaultTransition}
+    >
       {/* Number - italic, accent color, above-left of icon block */}
       <span
         className="text-[28px] md:text-[36px] font-bold italic leading-none mb-2 -ml-1"
@@ -94,6 +106,6 @@ export function ProcessStep({
       <p className="mt-3 text-[14px] md:text-[16px] leading-[24px] text-[#E0E0E0]">
         {description}
       </p>
-    </div>
+    </motion.div>
   );
 }

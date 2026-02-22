@@ -1,11 +1,14 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
+import { useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { Container, Button, ServiceCard, Modal } from "@/components/ui";
 import { getIconForService } from "@/lib/data/service-icons";
 import { SearchIcon } from "@/assets/icons";
 import { cn } from "@/lib";
 import type { HeroData, FilterCategory, ServiceItem } from "@/types/services";
+import { fadeInUp, staggerContainer, defaultTransition } from "@/lib/animations";
 
 interface ServicesPageContentProps {
   hero: HeroData;
@@ -145,12 +148,21 @@ export function ServicesPageContent({
     setIsFilterOpen(false);
   };
 
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+
   return (
-    <section className="py-20 md:py-32">
+    <section ref={ref} className="py-20 md:py-32">
       <Container>
         <div className="max-w-[1104px] mx-auto">
           {/* Hero */}
-          <div className="text-center mb-10 space-y-4">
+          <motion.div
+            className="text-center mb-10 space-y-4"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={fadeInUp}
+            transition={defaultTransition}
+          >
             <h1 className="text-[32px] md:text-[48px] leading-[38px] md:leading-[58px] text-text-title font-sans font-bold">
               {hero.title}
             </h1>
@@ -160,10 +172,16 @@ export function ServicesPageContent({
             <Button variant="primary" size="md" className="mt-4">
               {hero.ctaLabel}
             </Button>
-          </div>
+          </motion.div>
 
           {/* Search + Filters bar */}
-          <div className="flex flex-col sm:flex-row gap-3 mb-8">
+          <motion.div
+            className="flex flex-col sm:flex-row gap-3 mb-8"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={fadeInUp}
+            transition={{ ...defaultTransition, delay: 0.1 }}
+          >
             <div className="relative flex-1">
               <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-text-secondary pointer-events-none" />
               <input
@@ -197,7 +215,7 @@ export function ServicesPageContent({
             >
               Filters
             </Button>
-          </div>
+          </motion.div>
 
           <div className="flex gap-8">
             {/* Desktop filter sidebar */}
@@ -241,20 +259,30 @@ export function ServicesPageContent({
                   No services match your filters.
                 </p>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <motion.div
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                  variants={staggerContainer}
+                  initial="hidden"
+                  animate={isInView ? "visible" : "hidden"}
+                >
                   {filteredServices.map((service) => {
                     const { icon, iconBackground } = getIconForService(service.iconKey);
                     return (
-                      <ServiceCard
+                      <motion.div
                         key={service.id}
-                        icon={icon}
-                        iconBackground={iconBackground}
-                        title={service.title}
-                        description={service.description}
-                      />
+                        variants={fadeInUp}
+                        transition={defaultTransition}
+                      >
+                        <ServiceCard
+                          icon={icon}
+                          iconBackground={iconBackground}
+                          title={service.title}
+                          description={service.description}
+                        />
+                      </motion.div>
                     );
                   })}
-                </div>
+                </motion.div>
               )}
             </div>
           </div>

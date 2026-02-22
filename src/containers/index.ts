@@ -14,6 +14,7 @@ export { StatsBar } from "./StatsBar";
 export { ServicesSection } from "./ServicesSection";
 export { ProjectsSection } from "./ProjectsSection";
 export { ProjectsListClient } from "./ProjectsListClient";
+export { ProjectDetailContent } from "./ProjectDetailContent";
 export { CTASection } from "./CTASection";
 export { WhyChooseSection } from "./WhyChooseSection";
 export { WorkingProcessSection } from "./WorkingProcessSection";
@@ -22,3 +23,15 @@ export { TestimonialsSection } from "./TestimonialsSection";
 export { LetsBuildSection } from "./LetsBuildSection";
 export { FAQSection } from "./FAQSection";
 export { ReadyToLaunchSection } from "./ReadyToLaunchSection";
+export {
+  AboutHero,
+  AboutStats,
+  OurStorySection,
+  WhatDrivesUsSection,
+  OurValuesSection,
+  MeetOurTeamSection,
+  AboutTestimonialsSection,
+  AboutFAQSection,
+  AboutContactFormSection,
+  AboutCTASection,
+} from "./AboutPage";

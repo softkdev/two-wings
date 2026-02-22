@@ -1,6 +1,10 @@
+"use client";
+
 import type { ProjectCardProps } from "@/types/ui";
+import { motion } from "framer-motion";
 import { cn } from "@/lib";
 import Link from "next/link";
+import { defaultTransition } from "@/lib/animations";
 
 export function ProjectCard({
   image,
@@ -10,7 +14,7 @@ export function ProjectCard({
   className,
 }: ProjectCardProps) {
   return (
-    <article
+    <motion.article
       className={cn(
         "group flex flex-col",
         "bg-[#0f1317] border border-white/10 rounded-[24px]",
@@ -19,12 +23,18 @@ export function ProjectCard({
         "hover:border-primary-base/40",
         className
       )}
+      whileHover={{ y: -6 }}
+      transition={defaultTransition}
     >
       {/* Image/Mockup Container */}
       <div className="relative bg-[#050a10] p-2 overflow-hidden">
-        <div className="relative z-10 rounded-[14px] overflow-hidden flex items-center justify-center min-h-[260px]">
+        <motion.div
+          className="relative z-10 rounded-[14px] overflow-hidden flex items-center justify-center min-h-[260px]"
+          whileHover={{ scale: 1.05 }}
+          transition={defaultTransition}
+        >
           <div className="relative w-full h-[260px]">{image}</div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Content */}
@@ -58,6 +68,6 @@ export function ProjectCard({
           </Link>
         )}
       </div>
-    </article>
+    </motion.article>
   );
 }

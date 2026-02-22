@@ -57,6 +57,7 @@ import { Navigation, Footer } from "@/layouts";
 import { ScrollToTop } from "@/components/ui";
 import { ModalProvider } from "@/contexts/ModalContext";
 import { ContactUsModal } from "@/components/modals";
+import { MotionConfigProvider } from "@/components/providers/MotionConfigProvider";
 
 export default function RootLayout({
   children,
@@ -68,13 +69,15 @@ export default function RootLayout({
       <body
         className={`${playfairDisplay.variable} ${lato.variable} ${manrope.variable} ${inter.variable} antialiased bg-background-DEFAULT text-text-body`}
       >
-        <ModalProvider>
-          <Navigation />
-          <main className="min-h-screen">{children}</main>
-          <Footer />
-          <ScrollToTop />
-          <ContactUsModal />
-        </ModalProvider>
+        <MotionConfigProvider>
+          <ModalProvider>
+            <Navigation />
+            <main className="min-h-screen">{children}</main>
+            <Footer />
+            <ScrollToTop />
+            <ContactUsModal />
+          </ModalProvider>
+        </MotionConfigProvider>
       </body>
     </html>
   );

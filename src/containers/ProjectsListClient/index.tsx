@@ -1,11 +1,14 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
+import { useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { Container, Button, ProjectCard } from "@/components/ui";
 import { ROUTES } from "@/lib";
 import Image from "next/image";
 import type { ProjectsData } from "@/types/project";
 import { cn } from "@/lib";
+import { fadeInUp, staggerContainer, defaultTransition } from "@/lib/animations";
 
 const PAGE_SIZE = 8;
 
@@ -42,24 +45,39 @@ export function ProjectsListClient({ data }: ProjectsListClientProps) {
     setCurrentPage(1);
   };
 
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+
   return (
-    <section className="py-20 md:py-32">
+    <section ref={ref} className="py-20 md:py-32">
       <Container>
         <div className="max-w-[1104px] mx-auto">
           {/* Hero */}
-          <div className="text-center mb-12 md:mb-16 space-y-4">
+          <motion.div
+            className="text-center mb-12 md:mb-16 space-y-4"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={fadeInUp}
+            transition={defaultTransition}
+          >
             <h1 className="text-[32px] md:text-[48px] leading-[38px] md:leading-[58px] font-sans font-bold text-text-title">
               {listPage.title}
             </h1>
             <p className="text-lg md:text-[24px] leading-[26px] md:leading-[30px] text-text-body font-sans max-w-3xl mx-auto">
               {listPage.description}
             </p>
-          </div>
+          </motion.div>
 
           {/* Filters */}
-          <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-10">
+          <motion.div
+            className="flex flex-wrap justify-center gap-2 md:gap-3 mb-10"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={fadeInUp}
+            transition={{ ...defaultTransition, delay: 0.1 }}
+          >
             {meta.filters.map((f) => (
-              <button
+              <motion.button
                 key={f.slug}
                 type="button"
                 onClick={() => handleFilterChange(f.slug)}
@@ -69,16 +87,25 @@ export function ProjectsListClient({ data }: ProjectsListClientProps) {
                     ? "bg-secondary-base text-background-DEFAULT"
                     : "bg-white/5 border border-white/10 text-text-body hover:border-white/20 hover:bg-white/[0.07]"
                 )}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={defaultTransition}
               >
                 {f.label}
-              </button>
+              </motion.button>
             ))}
-          </div>
+          </motion.div>
 
           {/* Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12"
+            variants={staggerContainer}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
             {paginatedProjects.map((project) => (
-              <ProjectCard
+              <motion.div key={project.id} variants={fadeInUp} transition={defaultTransition}>
+                <ProjectCard
                 key={project.id}
                 title={project.title}
                 description={project.shortDescription}
@@ -95,12 +122,19 @@ export function ProjectsListClient({ data }: ProjectsListClientProps) {
                   />
                 }
               />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="flex flex-wrap items-center justify-center gap-2">
+            <motion.div
+              className="flex flex-wrap items-center justify-center gap-2"
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              variants={fadeInUp}
+              transition={defaultTransition}
+            >
               <Button
                 variant="outline"
                 size="sm"
@@ -125,7 +159,7 @@ export function ProjectsListClient({ data }: ProjectsListClientProps) {
               </Button>
               {Array.from({ length: totalPages }, (_, i) => i + 1).map(
                 (page) => (
-                  <button
+                  <motion.button
                     key={page}
                     type="button"
                     onClick={() => goToPage(page)}
@@ -135,9 +169,12 @@ export function ProjectsListClient({ data }: ProjectsListClientProps) {
                         ? "bg-secondary-base text-background-DEFAULT"
                         : "bg-white/5 border border-white/10 text-text-body hover:border-white/20"
                     )}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={defaultTransition}
                   >
                     {page}
-                  </button>
+                  </motion.button>
                 )
               )}
               <Button
@@ -162,7 +199,7 @@ export function ProjectsListClient({ data }: ProjectsListClientProps) {
                   />
                 </svg>
               </Button>
-            </div>
+            </motion.div>
           )}
         </div>
       </Container>

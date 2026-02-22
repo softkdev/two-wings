@@ -1,20 +1,34 @@
+"use client";
+
+import { useRef } from "react";
+import { useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { Container, Button, ProjectCard } from "@/components/ui";
 import { ROUTES } from "@/lib";
 import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "@/types/project";
+import { fadeInUp, staggerContainer, defaultTransition } from "@/lib/animations";
 
 interface ProjectsSectionProps {
   projects: Project[];
 }
 
 export function ProjectsSection({ projects }: ProjectsSectionProps) {
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+
   return (
-    <section className="py-20 md:py-32">
+    <section ref={ref} className="py-20 md:py-32">
       <Container>
         <div className="max-w-[1104px] mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-16 space-y-4">
+          <motion.div
+            className="text-center mb-16 space-y-4"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={fadeInUp}
+            transition={defaultTransition}
+          >
             <h2 className="text-[32px] md:text-[48px] leading-[38px] md:leading-[58px] font-sans font-bold text-text-title">
               Recent Projects
             </h2>
@@ -22,33 +36,47 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
               See how we&apos;ve helped businesses achieve their goals with
               beautiful, functional solutions.
             </p>
-          </div>
+          </motion.div>
 
-          {/* Projects Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-12">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-12"
+            variants={staggerContainer}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
             {projects.map((project) => (
-              <ProjectCard
+              <motion.div
                 key={project.id}
-                title={project.title}
-                description={project.shortDescription}
-                href={`${ROUTES.PROJECTS}/${project.slug}`}
-                image={
-                  <Image
-                    src={project.thumbnailImage}
-                    alt={project.title}
-                    fill
-                    priority={project.id === projects[0]?.id}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 352px"
-                    className="object-cover object-top"
-                    loading={project.id === projects[0]?.id ? "eager" : "lazy"}
-                  />
-                }
-              />
+                variants={fadeInUp}
+                transition={defaultTransition}
+              >
+                <ProjectCard
+                  title={project.title}
+                  description={project.shortDescription}
+                  href={`${ROUTES.PROJECTS}/${project.slug}`}
+                  image={
+                    <Image
+                      src={project.thumbnailImage}
+                      alt={project.title}
+                      fill
+                      priority={project.id === projects[0]?.id}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 352px"
+                      className="object-cover object-top"
+                      loading={project.id === projects[0]?.id ? "eager" : "lazy"}
+                    />
+                  }
+                />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
-          {/* CTA Button */}
-          <div className="flex justify-end">
+          <motion.div
+            className="flex justify-end"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={fadeInUp}
+            transition={{ ...defaultTransition, delay: 0.2 }}
+          >
             <Link href={ROUTES.PROJECTS}>
               <Button
                 variant="outline"
@@ -73,7 +101,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                 All Project
               </Button>
             </Link>
-          </div>
+          </motion.div>
         </div>
       </Container>
     </section>

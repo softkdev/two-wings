@@ -1,6 +1,10 @@
+"use client";
+
 import { Button, Container } from "@/components/ui";
 import { SparkleIconBadge } from "@/assets/icons";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { fadeInUp, fadeIn, defaultTransition } from "@/lib/animations";
 
 export function HeroSection() {
   return (
@@ -10,18 +14,29 @@ export function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Right: 3D Asset */}
           <div className="relative hidden lg:block">
-            {/* Decorative ellipses recreated with Tailwind utilities */}
-            <div
+            <motion.div
               className="pointer-events-none absolute -top-20 -right-20 h-72 w-72 rounded-full bg-primary-base/20 blur-[120px]"
               aria-hidden="true"
+              variants={fadeIn}
+              initial="hidden"
+              animate="visible"
+              transition={{ ...defaultTransition, delay: 0.5 }}
             />
-            <div
+            <motion.div
               className="pointer-events-none absolute -bottom-16 -left-20 h-64 w-64 rounded-full bg-secondary-base/20 blur-[100px]"
               aria-hidden="true"
+              variants={fadeIn}
+              initial="hidden"
+              animate="visible"
+              transition={{ ...defaultTransition, delay: 0.6 }}
             />
 
-            {/* 3D Laptop Asset */}
-            <div className="relative z-10 w-full max-w-[519px] transition-transform duration-500 hover:scale-105">
+            <motion.div
+              className="relative z-10 w-full max-w-[519px] transition-transform duration-500 hover:scale-105"
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ ...defaultTransition, delay: 0.4 }}
+            >
               <Image
                 src="/assets/bg-holder.png"
                 alt="Two Wings Dashboard Development - Professional web development services"
@@ -30,12 +45,17 @@ export function HeroSection() {
                 priority
                 className="h-auto w-full object-contain"
               />
-            </div>
+            </motion.div>
           </div>
           {/* Left: Text Content */}
           <div className="text-center lg:text-left max-w-[584px] w-full justify-self-center lg:justify-self-start">
-            {/* Badge */}
-            <div className="flex justify-center lg:justify-start mb-8">
+            <motion.div
+              className="flex justify-center lg:justify-start mb-8"
+              variants={fadeInUp}
+              initial="hidden"
+              animate="visible"
+              transition={{ ...defaultTransition, delay: 0.1 }}
+            >
               <div className="bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] px-4 py-2 rounded-[50px] flex items-center gap-2 transition-all duration-300 hover:border-[rgba(255,255,255,0.2)]">
                 <div className="w-6 h-6 shrink-0">
                   <SparkleIconBadge className="w-full h-full" />
@@ -44,23 +64,56 @@ export function HeroSection() {
                   Premium Quality at Smart Prices
                 </span>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Title - Exact Figma text */}
-            <h1 className="font-display font-bold text-[36px] md:text-[48px] lg:text-[64px] leading-normal text-text-title mb-6">
-              Two wings
-              <br />
-              from vision to flight
-            </h1>
+            <motion.h1
+              className="font-display font-bold text-[36px] md:text-[48px] lg:text-[64px] leading-normal text-text-title mb-6"
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: {},
+                visible: {
+                  transition: {
+                    staggerChildren: 0.08,
+                    delayChildren: 0.15,
+                  },
+                },
+              }}
+            >
+              <motion.span
+                className="block"
+                variants={fadeInUp}
+                transition={defaultTransition}
+              >
+                Two wings
+              </motion.span>
+              <motion.span
+                className="block"
+                variants={fadeInUp}
+                transition={defaultTransition}
+              >
+                from vision to flight
+              </motion.span>
+            </motion.h1>
 
-            {/* Description */}
-            <p className="font-sans font-medium text-[20px] md:text-[24px] leading-[30px] text-text-body mb-8">
+            <motion.p
+              className="font-sans font-medium text-[20px] md:text-[24px] leading-[30px] text-text-body mb-8"
+              variants={fadeInUp}
+              initial="hidden"
+              animate="visible"
+              transition={{ ...defaultTransition, delay: 0.3 }}
+            >
               We build high-performing websites with Custom Code, No-Code, and
               Low-Code—tailored to your goals.
-            </p>
+            </motion.p>
 
-            {/* CTA Buttons - Exact Figma text including typo */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+              variants={fadeInUp}
+              initial="hidden"
+              animate="visible"
+              transition={{ ...defaultTransition, delay: 0.4 }}
+            >
               <Button
                 variant="primary"
                 className="bg-secondary-base text-background-DEFAULT rounded-[32px] h-[48px] w-full sm:w-[174px] px-4"
@@ -73,7 +126,7 @@ export function HeroSection() {
               >
                 Oure Work
               </Button>
-            </div>
+            </motion.div>
           </div>
         </div>
       </Container>

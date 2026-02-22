@@ -1,5 +1,11 @@
+"use client";
+
+import { useRef } from "react";
+import { useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { Container } from "@/components/ui";
 import Image from "next/image";
+import { fadeInUp, staggerContainer, defaultTransition } from "@/lib/animations";
 
 const testimonials = [
   {
@@ -23,10 +29,19 @@ const testimonials = [
 ];
 
 export function TestimonialsSection() {
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+
   return (
-    <section className="py-20 md:py-32">
+    <section ref={ref} className="py-20 md:py-32">
       <Container>
-        <div className="mx-auto max-w-3xl text-center">
+        <motion.div
+          className="mx-auto max-w-3xl text-center"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={fadeInUp}
+          transition={defaultTransition}
+        >
           <h2 className="mt-4 text-[32px] md:text-[48px] leading-[38px] md:leading-[58px] text-text-title font-sans font-bold">
             What Our Clients Say
           </h2>
@@ -34,13 +49,21 @@ export function TestimonialsSection() {
             Real results, real impact. Here&apos;s what partners say about building
             with Two Wings.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <motion.div
+          className="mt-16 grid gap-6 md:grid-cols-2 xl:grid-cols-3"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
           {testimonials.map((testimonial) => (
-            <article
+            <motion.article
               key={testimonial.name}
-              className="relative flex h-full flex-col rounded-2xl border border-white/10 bg-[#0f1317] p-4 shadow-[0px_30px_80px_rgba(0,0,0,0.45)] transition-all duration-300 hover:border-white/20 hover:shadow-[0px_35px_90px_rgba(0,0,0,0.5)] hover:-translate-y-1"
+              className="relative flex h-full flex-col rounded-2xl border border-white/10 bg-[#0f1317] p-4 shadow-[0px_30px_80px_rgba(0,0,0,0.45)] transition-all duration-300 hover:border-white/20 hover:shadow-[0px_35px_90px_rgba(0,0,0,0.5)]"
+              variants={fadeInUp}
+              transition={defaultTransition}
+              whileHover={{ y: -4 }}
             >
               <span className="text-4xl text-secondary-base">
                 <svg
@@ -83,9 +106,9 @@ export function TestimonialsSection() {
                   </p>
                 </div>
               </div>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
       </Container>
     </section>
   );

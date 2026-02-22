@@ -1,18 +1,31 @@
+"use client";
+
+import { useRef } from "react";
+import { useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { ServiceCard, Container, Button } from "@/components/ui";
 import { getServicesData } from "@/lib/data/services";
 import { getIconForService } from "@/lib/data/service-icons";
 import { ROUTES } from "@/lib";
+import { fadeInUp, staggerContainer, defaultTransition } from "@/lib/animations";
 
 export function ServicesSection() {
   const { services } = getServicesData();
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
-    <section className="py-20 md:py-32">
+    <section ref={ref} className="py-20 md:py-32">
       <Container>
         <div className="max-w-[1104px] mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-10 space-y-4">
+          <motion.div
+            className="text-center mb-10 space-y-4"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={fadeInUp}
+            transition={defaultTransition}
+          >
             <h2 className="text-[32px] md:text-[48px] leading-[38px] md:leading-[58px] text-text-title font-sans font-bold">
               What We Can Build for You
             </h2>
@@ -20,26 +33,40 @@ export function ServicesSection() {
               From simple landing pages to complex enterprise systems, we have
               the expertise to bring your vision to life.
             </p>
-          </div>
+          </motion.div>
 
-          {/* Services Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
+            variants={staggerContainer}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
             {services.map((service) => {
               const { icon, iconBackground } = getIconForService(service.iconKey);
               return (
-                <ServiceCard
+                <motion.div
                   key={service.id}
-                  icon={icon}
-                  iconBackground={iconBackground}
-                  title={service.title}
-                  description={service.description}
-                />
+                  variants={fadeInUp}
+                  transition={defaultTransition}
+                >
+                  <ServiceCard
+                    icon={icon}
+                    iconBackground={iconBackground}
+                    title={service.title}
+                    description={service.description}
+                  />
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
 
-          {/* CTA Button */}
-          <div className="flex justify-end">
+          <motion.div
+            className="flex justify-end"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={fadeInUp}
+            transition={{ ...defaultTransition, delay: 0.2 }}
+          >
             <Link href={ROUTES.SERVICES}>
               <Button
                 variant="outline"
@@ -64,7 +91,7 @@ export function ServicesSection() {
                 All Services
               </Button>
             </Link>
-          </div>
+          </motion.div>
         </div>
       </Container>
     </section>

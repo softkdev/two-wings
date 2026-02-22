@@ -17,6 +17,7 @@ export { StatItem } from "./StatItem";
 export { ServiceCard } from "./ServiceCard";
 export { ProjectCard } from "./ProjectCard";
 export { ImageCarousel } from "./ImageCarousel";
+export { ScrollReveal } from "./ScrollReveal";
 export { ScrollToTop } from "./ScrollToTop";
 export { Modal } from "./Modal";
 export { ReasonCard } from "./ReasonCard";

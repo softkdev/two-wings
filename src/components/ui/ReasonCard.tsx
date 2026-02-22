@@ -1,4 +1,8 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { cn } from "@/lib";
+import { defaultTransition } from "@/lib/animations";
 
 export interface ReasonCardProps {
   title: string;
@@ -9,12 +13,14 @@ export interface ReasonCardProps {
 
 export function ReasonCard({ title, description, align, accent }: ReasonCardProps) {
   return (
-    <div
+    <motion.div
       className={cn(
         "rounded-2xl border border-white/15 bg-linear-to-br backdrop-blur-sm px-6 py-5 shadow-[0px_12px_40px_rgba(0,0,0,0.4)] transition-all duration-300 hover:border-white/25 hover:shadow-[0px_16px_50px_rgba(0,0,0,0.5)]",
         accent,
         align === "right" ? "text-right items-end" : "text-left items-start"
       )}
+      whileHover={{ y: -2 }}
+      transition={defaultTransition}
     >
       <div
         className={cn(
@@ -28,7 +34,6 @@ export function ReasonCard({ title, description, align, accent }: ReasonCardProp
       <p className="mt-2 text-[16px] leading-container-x-sm text-text-body">
         {description}
       </p>
-    </div>
+    </motion.div>
   );
 }
-

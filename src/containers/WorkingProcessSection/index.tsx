@@ -1,5 +1,8 @@
 "use client";
 
+import { useRef } from "react";
+import { useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { Container, ProcessStep } from "@/components/ui";
 import type { ProcessStepProps } from "@/components/ui";
 import {
@@ -9,6 +12,7 @@ import {
   DocumentCheckIcon,
   RocketIcon,
 } from "@/assets/icons";
+import { fadeInUp, staggerContainer, defaultTransition } from "@/lib/animations";
 
 const steps: Omit<ProcessStepProps, "isMobile">[] = [
   {
@@ -51,10 +55,19 @@ const steps: Omit<ProcessStepProps, "isMobile">[] = [
 ];
 
 export function WorkingProcessSection() {
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+
   return (
-    <section className="py-20 md:py-32">
+    <section ref={ref} className="py-20 md:py-32">
       <Container>
-        <div className="mx-auto max-w-3xl text-center">
+        <motion.div
+          className="mx-auto max-w-3xl text-center"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={fadeInUp}
+          transition={defaultTransition}
+        >
           <h2 className="mt-4 text-[32px] md:text-[48px] leading-[38px] md:leading-[58px] text-text-title font-sans font-bold">
             Our Working Process
           </h2>
@@ -62,7 +75,7 @@ export function WorkingProcessSection() {
             A simple, transparent process that keeps you involved every step of
             the way.
           </p>
-        </div>
+        </motion.div>
 
         {/* Desktop Layout - Linear horizontal with dashed connector */}
         <div className="relative mt-16 hidden lg:block">
@@ -72,16 +85,23 @@ export function WorkingProcessSection() {
             style={{ borderColor: "#2a2a2a" }}
           />
 
-          <div className="flex justify-between gap-8 xl:gap-12 max-w-6xl mx-auto">
+          <motion.div
+            className="flex justify-between gap-8 xl:gap-12 max-w-6xl mx-auto"
+            variants={staggerContainer}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
             {steps.map((step) => (
-              <div
+              <motion.div
                 key={step.title}
                 className="flex-1 min-w-0 max-w-[200px]"
+                variants={fadeInUp}
+                transition={defaultTransition}
               >
                 <ProcessStep {...step} isMobile={false} />
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         {/* Mobile Layout - unchanged until design provided */}
@@ -163,9 +183,13 @@ export function WorkingProcessSection() {
               const maxWidth = "calc(50% - 80px)";
 
               return (
-                <div
+                <motion.div
                   key={step.title}
                   className="absolute"
+                  variants={fadeInUp}
+                  initial="hidden"
+                  animate={isInView ? "visible" : "hidden"}
+                  transition={{ ...defaultTransition, delay: index * 0.08 }}
                   style={{
                     left: isLeft ? `calc(50% - ${horizontalOffset}px)` : undefined,
                     right: !isLeft ? `calc(50% - ${horizontalOffset}px)` : undefined,
@@ -176,7 +200,7 @@ export function WorkingProcessSection() {
                   }}
                 >
                   <ProcessStep {...step} isMobile />
-                </div>
+                </motion.div>
               );
             })}
           </div>

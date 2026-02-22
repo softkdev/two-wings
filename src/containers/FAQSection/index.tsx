@@ -1,9 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { useInView } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "@/components/ui";
 import { cn } from "@/lib";
 import { useModal } from "@/contexts/ModalContext";
+import { fadeInUp, defaultTransition } from "@/lib/animations";
 
 const faqs = [
   {
@@ -51,13 +54,21 @@ const faqs = [
 export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(7); // Last item open by default
   const { openContactModal } = useModal();
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
-    <section className="py-20 md:py-32">
+    <section ref={ref} className="py-20 md:py-32">
       <Container>
         <div className="mx-auto max-w-4xl">
           {/* Header */}
-          <div className="mb-12 text-center">
+          <motion.div
+            className="mb-12 text-center"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={fadeInUp}
+            transition={defaultTransition}
+          >
             <h2 className="text-[32px] md:text-[48px] leading-[38px] md:leading-[100%] text-text-title font-sans font-bold">
               Frequently Asked Questions
             </h2>
@@ -65,14 +76,14 @@ export function FAQSection() {
               Got questions? We&apos;ve got answers. Find everything you need to
               know about working with Two Wings.
             </p>
-          </div>
+          </motion.div>
 
           {/* FAQ Items */}
           <div className="flex flex-col gap-4">
             {faqs.map((faq, index) => {
               const isOpen = openIndex === index;
               return (
-                <div
+                <motion.div
                   key={faq.question}
                   className={cn(
                     "rounded-[10px] flex bg-[#16181b] p-4 md:p-6 transition-all duration-300 border border-transparent",
@@ -80,6 +91,10 @@ export function FAQSection() {
                       ? " flex-col gap-4 border-white/10"
                       : "h-[78px] md:h-[72px] items-center hover:border-white/10"
                   )}
+                  initial="hidden"
+                  animate={isInView ? "visible" : "hidden"}
+                  variants={fadeInUp}
+                  transition={defaultTransition}
                 >
                   <button
                     type="button"
@@ -89,14 +104,13 @@ export function FAQSection() {
                     <span className="text-[16px] leading-container-x-sm text-text-title font-sans font-normal">
                       {faq.question}
                     </span>
-                    <svg
-                      className={cn(
-                        "h-4 w-4 shrink-0 text-text-title transition-transform",
-                        isOpen && "rotate-180"
-                      )}
+                    <motion.svg
+                      className="h-4 w-4 shrink-0 text-text-title"
                       fill="none"
                       viewBox="0 0 16 16"
                       xmlns="http://www.w3.org/2000/svg"
+                      animate={{ rotate: isOpen ? 180 : 0 }}
+                      transition={defaultTransition}
                     >
                       <path
                         d="M4 6L8 10L12 6"
@@ -105,31 +119,48 @@ export function FAQSection() {
                         strokeLinecap="round"
                         strokeLinejoin="round"
                       />
-                    </svg>
+                    </motion.svg>
                   </button>
-                  {isOpen && (
-                    <p className="text-[16px] leading-container-x-sm text-text-body-2 font-sans font-normal">
-                      {faq.answer}
-                    </p>
-                  )}
-                </div>
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.p
+                        className="text-[16px] leading-container-x-sm text-text-body-2 font-sans font-normal"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={defaultTransition}
+                      >
+                        {faq.answer}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
               );
             })}
           </div>
 
           {/* CTA */}
-          <div className="mt-12 flex flex-col items-center gap-4 text-center">
+          <motion.div
+            className="mt-12 flex flex-col items-center gap-4 text-center"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={fadeInUp}
+            transition={{ ...defaultTransition, delay: 0.1 }}
+          >
             <p className="text-lg md:text-[24px] leading-[26px] md:leading-[30px] text-text-body font-sans font-medium">
               Still have questions? We&apos;re here to help!
             </p>
-            <button
+            <motion.button
               type="button"
               onClick={openContactModal}
               className="h-12 px-6 rounded-button bg-secondary-base text-background-DEFAULT text-[16px] leading-container-x-sm font-sans font-bold hover:opacity-90 transition-opacity"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={defaultTransition}
             >
               Contact Us
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
         </div>
       </Container>
     </section>

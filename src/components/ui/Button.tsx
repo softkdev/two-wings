@@ -1,3 +1,5 @@
+"use client";
+
 import type { ButtonProps } from "@/types/ui";
 import { cn } from "@/lib";
 
@@ -28,11 +30,13 @@ export function Button({
 }: ButtonProps) {
   return (
     <button
+      type="button"
       className={cn(
         "inline-flex items-center cursor-pointer justify-center gap-2",
         "rounded-button font-sans font-bold",
         "transition-all duration-200",
-        "disabled:opacity-50 disabled:cursor-not-allowed",
+        "hover:scale-[1.02] active:scale-[0.98]",
+        "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:active:scale-100",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-base focus-visible:ring-offset-2 focus-visible:ring-offset-background-DEFAULT",
         buttonVariants[variant],
         buttonSizes[size],

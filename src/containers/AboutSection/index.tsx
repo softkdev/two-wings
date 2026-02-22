@@ -1,5 +1,11 @@
+"use client";
+
+import { useRef } from "react";
+import { useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { Container } from "@/components/ui";
 import Image from "next/image";
+import { fadeInUp, staggerContainer, defaultTransition } from "@/lib/animations";
 
 const highlights = [
   {
@@ -97,12 +103,24 @@ const highlights = [
 ];
 
 export function AboutSection() {
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+
   return (
-    <section className="py-20 md:py-32">
+    <section ref={ref} className="py-20 md:py-32">
       <Container>
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+        <motion.div
+          className="grid gap-12 lg:grid-cols-2 lg:items-center"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
           {/* Illustration */}
-          <div className="relative order-2 lg:order-1">
+          <motion.div
+            className="relative order-2 lg:order-1"
+            variants={fadeInUp}
+            transition={defaultTransition}
+          >
             <Image
               src="/about-us.svg"
               alt="Two Wings team - Professional designers and developers creating digital solutions"
@@ -111,10 +129,14 @@ export function AboutSection() {
               unoptimized
               className="opacity-90 transition-opacity duration-300 hover:opacity-100"
             />
-          </div>
+          </motion.div>
 
           {/* Content */}
-          <div className="order-1 lg:order-2 flex flex-col gap-10">
+          <motion.div
+            className="order-1 lg:order-2 flex flex-col gap-10"
+            variants={fadeInUp}
+            transition={defaultTransition}
+          >
             {/* Header */}
             <div className="flex flex-col gap-4">
               <h2 className="text-[32px] md:text-[48px] leading-[38px] md:leading-[100%] text-text-title font-sans font-bold">
@@ -134,7 +156,15 @@ export function AboutSection() {
             {/* Highlights */}
             <div className="flex flex-col gap-8">
               {highlights.map((item) => (
-                <div key={item.title} className="flex gap-4 items-center transition-all duration-300 hover:translate-x-1">
+                <motion.div
+                  key={item.title}
+                  className="flex gap-4 items-center transition-all duration-300 hover:translate-x-1"
+                  variants={fadeInUp}
+                  initial="hidden"
+                  animate={isInView ? "visible" : "hidden"}
+                  transition={defaultTransition}
+                  whileHover={{ x: 4 }}
+                >
                   <div className="flex items-center justify-center rounded-[10px] w-12 h-12 shrink-0 transition-transform duration-300 group-hover:scale-110">
                     <div className="p-3 rounded-[10px] text-primary-base from-[#48ACBE] to-[#29ADC5] bg-linear-to-b group">
                       {item.icon}
@@ -148,19 +178,22 @@ export function AboutSection() {
                       {item.description}
                     </p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
 
             {/* CTA Button */}
-            <button
+            <motion.button
               type="button"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={defaultTransition}
               className="h-12 px-6 rounded-button bg-secondary-base text-background-DEFAULT text-[16px] leading-container-x-sm font-sans font-bold hover:opacity-90 transition-all duration-300 w-fit hover:scale-105"
             >
               Discover More
-            </button>
-          </div>
-        </div>
+            </motion.button>
+          </motion.div>
+        </motion.div>
       </Container>
     </section>
   );

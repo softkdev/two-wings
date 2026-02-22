@@ -1,4 +1,9 @@
+"use client";
+
 import Link from "next/link";
+import { useRef } from "react";
+import { useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { Logo, Container } from "@/components/ui";
 import { ROUTES, CONTACT_INFO, COMPANY_INFO } from "@/lib";
 import {
@@ -9,6 +14,7 @@ import {
   WhatsAppIcon,
   LocationIcon,
 } from "@/assets/icons";
+import { fadeInUp, staggerContainer, defaultTransition } from "@/lib/animations";
 
 const quickLinks = [
   { label: "Home", href: ROUTES.HOME },
@@ -28,17 +34,29 @@ const services = [
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
     <footer
+      ref={ref}
       className="bg-background-DEFAULT border-t border-border-DEFAULT"
       role="contentinfo"
     >
       <Container className="py-8 md:py-12 lg:py-16">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 lg:gap-12 mb-8 md:mb-10 lg:mb-12">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 lg:gap-12 mb-8 md:mb-10 lg:mb-12"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
           {/* Column 1: Logo & Description */}
-          <div className="flex flex-col gap-3 md:gap-4">
+          <motion.div
+            className="flex flex-col gap-3 md:gap-4"
+            variants={fadeInUp}
+            transition={defaultTransition}
+          >
             <Logo />
             <p className="text-sm md:text-base text-text-body-2 font-sans leading-relaxed">
               Professional web solutions at smart prices. Custom code, no-code,
@@ -47,70 +65,80 @@ export function Footer() {
 
             {/* Social Links */}
             <div className="flex gap-3 mt-2">
-              <a
+              <motion.a
                 href="#"
-                className="w-9 h-9 rounded-full bg-[rgba(212,239,243,0.05)] flex items-center justify-center text-text-body-2 hover:text-text-title hover:bg-[rgba(212,239,243,0.1)] transition-all duration-300 hover:scale-110"
+                className="w-9 h-9 rounded-full bg-[rgba(212,239,243,0.05)] flex items-center justify-center text-text-body-2 hover:text-text-title hover:bg-[rgba(212,239,243,0.1)] transition-colors duration-300"
                 aria-label="LinkedIn"
+                whileHover={{ scale: 1.1 }}
+                transition={defaultTransition}
               >
                 <LinkedInIcon className="w-[18px] h-[18px]" />
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href="#"
-                className="w-9 h-9 rounded-full bg-[rgba(212,239,243,0.05)] flex items-center justify-center text-text-body-2 hover:text-text-title hover:bg-[rgba(212,239,243,0.1)] transition-all duration-300 hover:scale-110"
+                className="w-9 h-9 rounded-full bg-[rgba(212,239,243,0.05)] flex items-center justify-center text-text-body-2 hover:text-text-title hover:bg-[rgba(212,239,243,0.1)] transition-colors duration-300"
                 aria-label="Instagram"
+                whileHover={{ scale: 1.1 }}
+                transition={defaultTransition}
               >
                 <InstagramIcon className="w-[18px] h-[18px]" />
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href="#"
-                className="w-9 h-9 rounded-full bg-[rgba(212,239,243,0.05)] flex items-center justify-center text-text-body-2 hover:text-text-title hover:bg-[rgba(212,239,243,0.1)] transition-all duration-300 hover:scale-110"
+                className="w-9 h-9 rounded-full bg-[rgba(212,239,243,0.05)] flex items-center justify-center text-text-body-2 hover:text-text-title hover:bg-[rgba(212,239,243,0.1)] transition-colors duration-300"
                 aria-label="Twitter"
+                whileHover={{ scale: 1.1 }}
+                transition={defaultTransition}
               >
                 <TwitterIcon className="w-[18px] h-[18px]" />
-              </a>
+              </motion.a>
             </div>
-          </div>
+          </motion.div>
 
           {/* Column 2: Quick Links */}
-          <div>
+          <motion.div variants={fadeInUp} transition={defaultTransition}>
             <h3 className="text-base md:text-lg text-primary-base font-sans mb-4 md:mb-6">
               Quick Links
             </h3>
             <ul className="flex flex-col gap-3 md:gap-4">
               {quickLinks.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm md:text-base text-text-body-2 font-sans hover:text-text-title transition-colors duration-300"
-                  >
-                    {link.label}
-                  </Link>
+                  <motion.div whileHover={{ x: 4 }} transition={defaultTransition}>
+                    <Link
+                      href={link.href}
+                      className="text-sm md:text-base text-text-body-2 font-sans hover:text-text-title transition-colors duration-300 inline-block"
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Column 3: Our Services */}
-          <div>
+          <motion.div variants={fadeInUp} transition={defaultTransition}>
             <h3 className="text-base md:text-lg text-primary-base font-sans mb-4 md:mb-6">
               Our Services
             </h3>
             <ul className="flex flex-col gap-3 md:gap-4">
               {services.map((service) => (
                 <li key={service.href}>
-                  <Link
-                    href={service.href}
-                    className="text-sm md:text-base text-text-body-2 font-sans hover:text-text-title transition-colors"
-                  >
-                    {service.label}
-                  </Link>
+                  <motion.div whileHover={{ x: 4 }} transition={defaultTransition}>
+                    <Link
+                      href={service.href}
+                      className="text-sm md:text-base text-text-body-2 font-sans hover:text-text-title transition-colors inline-block"
+                    >
+                      {service.label}
+                    </Link>
+                  </motion.div>
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Column 4: Contact Us */}
-          <div>
+          <motion.div variants={fadeInUp} transition={defaultTransition}>
             <h3 className="text-base md:text-lg text-primary-base font-sans mb-4 md:mb-6">
               Contact Us
             </h3>
@@ -150,8 +178,8 @@ export function Footer() {
                 </span>
               </li>
             </ul>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Copyright */}
         <div className="pt-6 md:pt-8 border-t border-border-DEFAULT">

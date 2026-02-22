@@ -1,9 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { Container } from "@/components/ui";
 import { getServicesData } from "@/lib/data/services";
 import { cn } from "@/lib";
+import { fadeInUp, defaultTransition } from "@/lib/animations";
 
 const serviceGroups = (() => {
   const { filterCategories } = getServicesData();
@@ -195,6 +198,8 @@ export function LetsBuildSection() {
   );
   const [otherSelected, setOtherSelected] = useState(false);
   const [otherText, setOtherText] = useState("");
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   const toggleService = (label: string) => {
     setSelectedServices((prev) =>
@@ -205,12 +210,24 @@ export function LetsBuildSection() {
   };
 
   return (
-    <section className="py-20 md:py-32">
+    <section ref={ref} className="py-20 md:py-32">
       <Container>
-        <h2 className="mt-4 text-center text-[32px] md:text-[48px] leading-[38px] md:leading-[58px] text-text-title font-sans font-bold">
+        <motion.h2
+          className="mt-4 text-center text-[32px] md:text-[48px] leading-[38px] md:leading-[58px] text-text-title font-sans font-bold"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={fadeInUp}
+          transition={defaultTransition}
+        >
           Let&apos;s Build Something Amazing Together
-        </h2>
-        <div className="mx-auto mb-10 max-w-2xl text-center">
+        </motion.h2>
+        <motion.div
+          className="mx-auto mb-10 max-w-2xl text-center"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={fadeInUp}
+          transition={defaultTransition}
+        >
           <p className="mt-2 text-lg md:text-2xl leading-[26px] md:leading-[30px] text-text-body">
             Tell us about your project and we&apos;ll get back to you within 24
             hours with a detailed proposal.
@@ -225,8 +242,14 @@ export function LetsBuildSection() {
             </a>
             .
           </p>
-        </div>
-        <div className="rounded-button border border-white/10 bg-[#16181b] p-6 md:p-12 shadow-[0px_60px_140px_rgba(0,0,0,0.55)] transition-all duration-300">
+        </motion.div>
+        <motion.div
+          className="rounded-button border border-white/10 bg-[#16181b] p-6 md:p-12 shadow-[0px_60px_140px_rgba(0,0,0,0.55)] transition-all duration-300"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={fadeInUp}
+          transition={{ ...defaultTransition, delay: 0.1 }}
+        >
           <form className="flex flex-col gap-8">
             {/* Personal Information */}
             <div>
@@ -371,9 +394,12 @@ export function LetsBuildSection() {
               <p className="text-[20px] leading-[100%] text-text-body font-body font-medium">
                 We&apos;ll respond within 24 hours with a detailed proposal
               </p>
-              <button
+              <motion.button
                 type="submit"
                 className="h-12 px-6 rounded-button bg-secondary-base text-background-DEFAULT text-[16px] leading-container-x-sm font-sans font-bold flex items-center justify-center gap-1 hover:opacity-90 transition-opacity"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={defaultTransition}
               >
                 <span>Send Message</span>
                 <svg
@@ -397,10 +423,10 @@ export function LetsBuildSection() {
                     strokeLinejoin="round"
                   />
                 </svg>
-              </button>
+              </motion.button>
             </div>
           </form>
-        </div>
+        </motion.div>
       </Container>
     </section>
   );

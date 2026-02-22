@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { Logo, Button, Container } from "@/components/ui";
+import { AnimatePresence, motion } from "framer-motion";
+import { Logo, Button } from "@/components/ui";
 import { NavLink } from "./NavLink";
 import { ROUTES } from "@/lib";
 import { cn } from "@/lib";
 import { useIsScrolled } from "@/hooks";
 import { useModal } from "@/contexts/ModalContext";
+import { fadeInUp, staggerContainer, defaultTransition } from "@/lib/animations";
 
 const navigationLinks = [
   { label: "Home", href: ROUTES.HOME },
@@ -41,15 +43,21 @@ export function Navigation() {
       aria-label="Main navigation"
     >
       <div className="py-2 md:py-4 max-w-[1170px] mx-auto">
-        <div
+        <motion.div
           className={cn(
             "relative flex items-center justify-between",
             "rounded-button border border-[#06191d] px-4 sm:px-6 lg:px-10",
-            "h-[73px] shadow-[0_20px_60px_rgba(0,0,0,0.45)]",
+            "h-[73px]",
             "transition-all duration-300",
             NAV_GRADIENT,
             "overflow-hidden",
           )}
+          animate={{
+            boxShadow: isScrolled
+              ? "0_20px_60px_rgba(0,0,0,0.55)"
+              : "0_20px_60px_rgba(0,0,0,0.45)",
+          }}
+          transition={defaultTransition}
         >
           {/* Top gradient */}
           <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
@@ -123,45 +131,55 @@ export function Navigation() {
               </svg>
             )}
           </button>
-        </div>
+        </motion.div>
 
         {/* Mobile Menu */}
-        <div
-          className={cn(
-            "lg:hidden overflow-hidden transition-all duration-300 ease-in-out mt-2",
-            isMobileMenuOpen
-              ? "max-h-[500px] opacity-100 pb-6"
-              : "max-h-0 opacity-0",
-          )}
-        >
-          <div className="flex flex-col gap-6 pt-6 border-t border-white/10 rounded-card bg-[#0b1015]/50 p-6">
-            {/* Mobile Links */}
-            {navigationLinks.map((link) => (
-              <NavLink
-                key={link.href}
-                href={link.href}
-                isActive={pathname === link.href}
-                onClick={closeMobileMenu}
-                className="text-[18px] font-sans"
-              >
-                {link.label}
-              </NavLink>
-            ))}
-
-            {/* Mobile CTA */}
-            <Button
-              variant="primary"
-              size="md"
-              className="w-full mt-2"
-              onClick={() => {
-                openContactModal();
-                closeMobileMenu();
-              }}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              key="mobile-menu"
+              className="lg:hidden overflow-hidden mt-2"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={defaultTransition}
             >
-              Get a Free Quote
-            </Button>
-          </div>
-        </div>
+              <motion.div
+                className="flex flex-col gap-6 pt-6 pb-6 border-t border-white/10 rounded-card bg-[#0b1015]/50 p-6"
+                variants={staggerContainer}
+                initial="hidden"
+                animate="visible"
+              >
+                {navigationLinks.map((link) => (
+                  <motion.div key={link.href} variants={fadeInUp}>
+                    <NavLink
+                      href={link.href}
+                      isActive={pathname === link.href}
+                      onClick={closeMobileMenu}
+                      className="text-[18px] font-sans"
+                    >
+                      {link.label}
+                    </NavLink>
+                  </motion.div>
+                ))}
+
+                <motion.div variants={fadeInUp}>
+                  <Button
+                    variant="primary"
+                    size="md"
+                    className="w-full mt-2"
+                    onClick={() => {
+                      openContactModal();
+                      closeMobileMenu();
+                    }}
+                  >
+                    Get a Free Quote
+                  </Button>
+                </motion.div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </nav>
   );

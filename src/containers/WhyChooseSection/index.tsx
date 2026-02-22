@@ -1,5 +1,11 @@
+"use client";
+
+import { useRef } from "react";
+import { useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { Container, Logo, ReasonCard } from "@/components/ui";
 import type { ReasonCardProps } from "@/components/ui";
+import { fadeInUp, scaleIn, staggerContainer, defaultTransition } from "@/lib/animations";
 
 const reasons: ReasonCardProps[] = [
   {
@@ -47,12 +53,20 @@ const reasons: ReasonCardProps[] = [
 export function WhyChooseSection() {
   const leftItems = reasons.filter((item) => item.align === "left");
   const rightItems = reasons.filter((item) => item.align === "right");
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
-    <section className="relative overflow-hidden py-20 md:py-32">
+    <section ref={ref} className="relative overflow-hidden py-20 md:py-32">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,#0e1d2b_0%,#050609_60%)] opacity-20" />
       <Container className="relative z-10">
-        <div className="mx-auto max-w-3xl text-center">
+        <motion.div
+          className="mx-auto max-w-3xl text-center"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={fadeInUp}
+          transition={defaultTransition}
+        >
           <h2 className="mt-4 text-[32px] md:text-[48px] leading-[38px] md:leading-[58px] text-text-title font-sans font-bold">
             Why Choose Two Wings?
           </h2>
@@ -60,7 +74,7 @@ export function WhyChooseSection() {
             Professional quality at smart prices. We deliver exceptional results
             that fit your budget.
           </p>
-        </div>
+        </motion.div>
 
         {/* Desktop layout */}
         <div className="mt-16 hidden lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-10 relative">
@@ -116,43 +130,66 @@ export function WhyChooseSection() {
             })}
           </svg>
 
-          <div className="flex flex-col gap-10 relative z-10">
+          <motion.div
+            className="flex flex-col gap-10 relative z-10"
+            variants={staggerContainer}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
             {leftItems.map((reason) => (
-              <div key={reason.title} className="relative">
+              <motion.div key={reason.title} className="relative" variants={fadeInUp} transition={defaultTransition}>
                 <ReasonCard {...reason} />
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
-          <div className="relative flex items-center justify-center z-10">
+          <motion.div
+            className="relative flex items-center justify-center z-10"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={scaleIn}
+            transition={defaultTransition}
+          >
             {/* Center circle with logo */}
             <div className="relative flex h-[360px] w-[360px] items-center justify-center rounded-full border border-white/10 bg-[radial-gradient(circle,#09121c_0%,#05080d_70%)] shadow-[0_0_120px_rgba(2,12,24,0.6)]">
               <div className="absolute inset-[18%] rounded-full border border-white/5" />
               <div className="absolute inset-[32%] rounded-full border border-white/5 opacity-60" />
               <Logo className="relative z-10 scale-110" />
             </div>
-          </div>
+          </motion.div>
 
-          <div className="flex flex-col gap-10 relative z-10">
+          <motion.div
+            className="flex flex-col gap-10 relative z-10"
+            variants={staggerContainer}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
             {rightItems.map((reason) => (
-              <div key={reason.title} className="relative">
+              <motion.div key={reason.title} className="relative" variants={fadeInUp} transition={defaultTransition}>
                 <ReasonCard {...reason} />
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         {/* Mobile layout */}
-        <div className="mt-16 grid gap-6 lg:hidden">
-          <div className="flex justify-center">
+        <motion.div
+          className="mt-16 grid gap-6 lg:hidden"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          <motion.div className="flex justify-center" variants={fadeInUp} transition={defaultTransition}>
             <div className="relative flex h-48 w-48 items-center justify-center rounded-full border border-white/10 bg-[radial-gradient(circle,#09121c_0%,#05080d_70%)]">
               <Logo className="scale-90" />
             </div>
-          </div>
+          </motion.div>
           {reasons.map((reason) => (
-            <ReasonCard key={reason.title} {...reason} />
+            <motion.div key={reason.title} variants={fadeInUp} transition={defaultTransition}>
+              <ReasonCard {...reason} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </Container>
     </section>
   );
